@@ -1,4 +1,10 @@
 <?php 
+
+/**
+ * Account
+ *
+ * Simple account object, entrypts the password and can be validated
+ */
 class Account{
 
     private $id;

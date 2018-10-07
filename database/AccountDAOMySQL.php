@@ -2,7 +2,11 @@
 
 require 'Connection.php';
 require 'AccountDAO.php';
-
+/**
+ * AccountDAOMySQL
+ *
+ * Object to implement basic account database operations
+ */
 class AccountDAOMySQL implements AccountDAO{
 
     public function register($account){

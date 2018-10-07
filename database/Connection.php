@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Connection
+ *
+ * Creates the connection to the Database
+ */
 class Connection{
 
     public static function createConnection(){

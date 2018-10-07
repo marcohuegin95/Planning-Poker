@@ -1,6 +1,11 @@
 <?php
 require 'Page.php';
 
+/**
+ * LoginPage
+ *
+ * Login Page which renders the Login Site and given messages or errors
+ */
 class LoginPage implements Page{
 
     private $message;
