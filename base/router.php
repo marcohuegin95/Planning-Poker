@@ -19,7 +19,6 @@ class Router
     * @return route a route object if an action was found, NULL if not
     */
     private function findRouteByURL($url){
-        
         $routes = simplexml_load_file("routing.xml");
         foreach($routes as $route){
             if (isset($route->url) && isset($route->controller) && isset($route->action)){

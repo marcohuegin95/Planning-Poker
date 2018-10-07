@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <routes>
+
   <route>
-      <url>/Login</url>
+      <url>/</url>
       <controller>LoginController</controller>
       <action>index</action>
   </route>
+
+    <route>
+      <url>/Register</url>
+      <controller>LoginController</controller>
+      <action>register</action>
+  </route>
+  
 </routes>
