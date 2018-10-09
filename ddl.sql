@@ -1,11 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.8.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Erstellungszeit: 09. Okt 2018 um 20:22
--- Server-Version: 10.1.34-MariaDB
--- PHP-Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,7 +26,6 @@ CREATE TABLE `accounts` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- --------------------------------------------------------
 
@@ -68,8 +59,7 @@ CREATE TABLE `rel_voting_user_sotry` (
 CREATE TABLE `user_story` (
   `id` int(11) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `end` date NOT NULL,
-  `result` int(11) NOT NULL
+  `end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,7 +68,7 @@ CREATE TABLE `user_story` (
 -- Tabellenstruktur für Tabelle `voting`
 --
 
-CREATE TABLE `voting` (
+CREATE TABLE `vote` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
