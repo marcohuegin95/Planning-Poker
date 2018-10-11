@@ -93,7 +93,7 @@ ALTER TABLE `rel_voting_accounts`
 --
 -- Indizes für die Tabelle `rel_voting_user_sotry`
 --
-ALTER TABLE `rel_voting_user_sotry`
+ALTER TABLE `rel_voting_user_story`
   ADD PRIMARY KEY (`fk_user_story`,`fk_voting`);
 
 --
