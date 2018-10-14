@@ -17,6 +17,7 @@
       <url>/Test</url>
       <controller>PokerController</controller>
       <action>index</action>
+      <filter>LoginFilter</filter>
   </route>
 
 </routes>

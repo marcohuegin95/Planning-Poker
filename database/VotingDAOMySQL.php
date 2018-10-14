@@ -132,11 +132,12 @@ class VotingDAOMySQL implements VotingDAO{
 
     function getVotings($byAccountId){
         $result = [];
+        $con = Connection::createConnection();
         $stmt = $con->prepare("SELECT v.id, v.name FROM vote v INNER JOIN rel_vote_user rel_usr ON v.id = rel_acc.fk_vote ON  WHERE  rel_usr.fk_user = :userid");
         $stmt->bindParam(':userid', $userid_var);
         $userid_var = $byAccountId;
         try{
-            while($row = $statement->fetch()) {
+            while($row = $stmt->fetch()) {
                 $vote = new Vote();
                 $vote->setId($row['id']);
                 $vote->setName($row['name']);
@@ -148,6 +149,7 @@ class VotingDAOMySQL implements VotingDAO{
              }
     
         }catch(Exception $e){
+            echo 'Exception abgefangen: ',  $e->getMessage(), "\n"; 
 
         }
         return $result;

@@ -15,16 +15,8 @@ class PokerController{
     */
     public function index(){
         $dao = new VotingDAOMySQL();
-        $vote = new Vote();
-        $vote->setName('test');
-
-        $story = new UserStory();
-        $story->setDescription('das ist eine beschreibung');
-        $story->setEnd(date(DATE_RFC822));
-
-        $vote->setUserStorys(array($story));
-
-        $dao->insert($vote);
+        print_r( $dao->getVotings(1));;
+        
     }
 
 }
