@@ -13,4 +13,10 @@
       <action>register</action>
   </route>
   
+  <route>
+      <url>/Test</url>
+      <controller>PokerController</controller>
+      <action>index</action>
+  </route>
+
 </routes>
