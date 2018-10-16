@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <routes>
 
-  <route>
-      <url>/</url>
-      <controller>LoginController</controller>
-      <action>index</action>
-  </route>
+    <route>
+        <url>/</url>
+        <controller>LoginController</controller>
+        <action>index</action>
+    </route>
 
     <route>
-      <url>/Register</url>
-      <controller>LoginController</controller>
-      <action>register</action>
-  </route>
+        <url>/Register</url>
+        <controller>LoginController</controller>
+        <action>register</action>
+    </route>
   
-  <route>
-      <url>/Test</url>
-      <controller>PokerController</controller>
-      <action>index</action>
-      <filter>LoginFilter</filter>
-  </route>
+    <route>
+        <url>/Login</url>
+        <controller>LoginController</controller>
+        <action>login</action>
+    </route>
+
+    <route>
+        <url>/Logout</url>
+        <controller>LoginController</controller>
+        <action>logout</action>
+    </route>
+
+    <route>
+        <url>/Test</url>
+        <controller>PokerController</controller>
+        <action>index</action>
+        <filter>LoginFilter</filter>
+    </route>
 
 </routes>

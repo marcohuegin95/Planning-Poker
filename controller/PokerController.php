@@ -15,8 +15,15 @@ class PokerController{
     */
     public function index(){
         $dao = new VotingDAOMySQL();
-        print_r( $dao->getVotings(1));;
-        
+        $dao->getVotings(7);  
+        echo 'asd';
+    }
+
+
+
+    public function dashboard(){
+        $dao = new VotingDAOMySQL();
+
     }
 
 }

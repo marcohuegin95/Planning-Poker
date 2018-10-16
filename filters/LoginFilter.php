@@ -10,7 +10,7 @@ require 'Filter.php';
 class LoginFilter implements Filter{
     
     function filter(){
-        if (!$_SESSION['userid']){
+        if (!isset($_SESSION["userid"])){
             header("Location: /");
             die();
         }

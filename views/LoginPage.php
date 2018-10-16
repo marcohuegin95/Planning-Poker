@@ -10,10 +10,10 @@ class LoginPage implements Page{
 
     private $message;
 
-    private $error;
+    private $err;
 
     public function render(){
-        include ("templates/login.html");
+        include ("templates/login.php");
     }
 
 
@@ -37,12 +37,11 @@ class LoginPage implements Page{
      *
      * @return  self
      */ 
-    public function setError($error)
+    public function setError($err)
     {
-        $this->$error = "<div class=\"alert alert-danger\" role=\"alert\">
-                            $error
+        $this->err = "<div class=\"alert alert-danger\" role=\"alert\">
+                            $err
                         </div>";
-
         return $this;
     }
 }
