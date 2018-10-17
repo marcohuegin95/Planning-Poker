@@ -56,29 +56,31 @@ class Vote{
     }
 
     /**
-     * Get the value of members
-     */ 
-    public function getMembers()
-    {
-        return $this->members;
-    }
-
-    /**
-     * Set the value of members
+     * Set the value of users
      *
      * @return  self
      */ 
-    public function setMembers($members)
+    public function setUsers($users)
     {
-        $this->members = $members;
+        $this->users = $users;
 
         return $this;
+    }
+
+
+    /**
+     * get the value of users
+     *
+     */ 
+    public function getUsers()
+    {
+        return $this->users;
     }
 
     /**
      * Get the value of user_storys
      */ 
-    public function getUser_storys()
+    public function getUserStorys()
     {
         return $this->user_storys;
     }
@@ -88,7 +90,7 @@ class Vote{
      *
      * @return  self
      */ 
-    public function setUser_storys($user_storys)
+    public function setUserStorys($user_storys)
     {
         $this->user_storys = $user_storys;
 
@@ -96,7 +98,7 @@ class Vote{
     }
 
     public function validate(){
-        
+        return true;
     }
 
 }

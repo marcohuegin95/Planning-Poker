@@ -18,8 +18,10 @@
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
-                <?php echo $this->message?>
-                <?php echo $this->error?>
+                <?php echo $this->err;
+                      echo $this->message;  
+                ?>
+                
                 <div class="card">
                     <div class="card-header">
                         <h4>Scrum Planning Poker</h4>
@@ -40,12 +42,12 @@
                                 <form action="/Login" method="post">
                                     <div class="form-group">
                                         <label for="inputEmail">Email address</label>
-                                        <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp"
-                                            placeholder="Enter email">
+                                        <input name="email" type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter email" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword">Password</label>
-                                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                                        <input name="password" type="password" class="form-control" id="loginPassword" placeholder="Password" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </form>
@@ -55,16 +57,16 @@
                                 <form action="/Register" method="post">
                                     <div class="form-group">
                                         <label for="inputUser">Username</label>
-                                        <input name="username" type="test" class="form-control" id="registertUser" placeholder="Enter username">
+                                        <input name="username" type="test" class="form-control" id="registertUser" placeholder="Enter username" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail">Email address</label>
                                         <input name="email" type="email" class="form-control" id="registerEmail" aria-describedby="emailHelp"
-                                            placeholder="Enter email">
+                                            placeholder="Enter email" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword">Password</label>
-                                        <input name="password" type="password" class="form-control" id="registerPassword" placeholder="Password">
+                                        <input name="password" type="password" class="form-control" id="registerPassword" placeholder="Password" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Register</button>
                                 </form>

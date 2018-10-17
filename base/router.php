@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Route
  *
@@ -7,8 +8,8 @@
 class Router
 {
 
-    private function autoload ($className) { 
-        $class = 'controller/' . $className. '.php';
+    private function autoload ($prefix, $className) { 
+        $class = $prefix . '/' . $className. '.php';
          if (file_exists($class)) {
             require $class;
         }
@@ -40,7 +41,18 @@ class Router
         $base_url = $this->getBasePathFromURL($url);
         $route = $this->findRouteByURL($base_url);
         if ($route != NULL){
-            $this->autoload($route->controller);
+            //is there a filter?
+            if ($route->filter){
+                $this->autoload('filters', $route->filter);
+                $filter_class = (string) $route->filter;
+
+                $filter = new $filter_class();
+                if ($filter instanceof Filter){
+                    $filter->filter();
+                }
+                    
+            }
+            $this->autoload('controller' , $route->controller);
             $controller_class = (string) $route->controller;
             $controller_action = (string) $route->action;
             

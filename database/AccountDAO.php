@@ -6,7 +6,7 @@
  */
 interface AccountDAO{
     function register($account);
-    function isValid($account);
+    function findAndSetId($account);
 }
 
 ?>

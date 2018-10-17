@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `accounts`
 --
 
-CREATE TABLE `accounts` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -33,21 +33,21 @@ CREATE TABLE `accounts` (
 -- Tabellenstruktur für Tabelle `rel_voting_accounts`
 --
 
-CREATE TABLE `rel_voting_accounts` (
-  `fk_account` int(11) NOT NULL,
-  `fk_voting` int(11) NOT NULL,
+CREATE TABLE `rel_vote_user` (
+  `fk_user` int(11) NOT NULL,
+  `fk_vote` int(11) NOT NULL,
   `points_voted` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `rel_voting_user_sotry`
+-- Tabellenstruktur für Tabelle `rel_voting_user_story`
 --
 
-CREATE TABLE `rel_voting_user_sotry` (
+CREATE TABLE `rel_vote_user_story` (
   `fk_user_story` int(11) NOT NULL,
-  `fk_voting` int(11) NOT NULL
+  `fk_vote` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -80,21 +80,21 @@ CREATE TABLE `vote` (
 --
 -- Indizes für die Tabelle `accounts`
 --
-ALTER TABLE `accounts`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indizes für die Tabelle `rel_voting_accounts`
 --
-ALTER TABLE `rel_voting_accounts`
-  ADD PRIMARY KEY (`fk_account`,`fk_voting`);
+ALTER TABLE `rel_vote_user`
+  ADD PRIMARY KEY (`fk_user`,`fk_vote`);
 
 --
 -- Indizes für die Tabelle `rel_voting_user_sotry`
 --
-ALTER TABLE `rel_voting_user_story`
-  ADD PRIMARY KEY (`fk_user_story`,`fk_voting`);
+ALTER TABLE `rel_vote_user_story`
+  ADD PRIMARY KEY (`fk_user_story`,`fk_vote`);
 
 --
 -- Indizes für die Tabelle `user_story`
@@ -105,7 +105,7 @@ ALTER TABLE `user_story`
 --
 -- Indizes für die Tabelle `voting`
 --
-ALTER TABLE `voting`
+ALTER TABLE `vote`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -115,7 +115,7 @@ ALTER TABLE `voting`
 --
 -- AUTO_INCREMENT für Tabelle `accounts`
 --
-ALTER TABLE `accounts`
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
@@ -127,7 +127,7 @@ ALTER TABLE `user_story`
 --
 -- AUTO_INCREMENT für Tabelle `voting`
 --
-ALTER TABLE `voting`
+ALTER TABLE `vote`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

@@ -15,9 +15,29 @@ class Account{
 
     private $password;
 
+    private $validate_error;
+
     
     public function validate(){
-        return true; //TODO
+        if ($this->username && $this->email && $this->password){
+            if (strlen($this->username) < 5){
+                $this->validate_error = 'Username needs to be at least 5 characters';
+                return false;    
+            }
+            if (strlen($this->password) < 5){
+                $this->validate_error = 'Password needs to be at least 5 characters';
+                return false;    
+            }
+
+        }else{
+            $this->validate_error = 'Empty account values';
+            return false;
+        }
+        return true;
+    }
+
+    public function getLastValidateError(){
+        return $this->validate_error;
     }
 
     /**
@@ -69,13 +89,13 @@ class Account{
     }
 
     /**
-     * Set the value of hased password so its never stored in the model object unencrypted
+     * Set the value of password 
      *
      * @return  self
      */ 
     public function setPassword($password)
     {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
 
         return $this;
     }

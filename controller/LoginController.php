@@ -24,6 +24,31 @@ class LoginController{
     * find a search query in the database for the given user 
     */
     public function login(){
+        $page = new LoginPage();
+        $account = $this->createAccountFromParams(true);
+        if ($account != NULL){
+            $dao = new AccountDAOMySQL();
+            if ($dao->findAndSetId($account)){
+                $_SESSION["userid"] = $account->getId();
+                header("Location: /dashboard");
+                die();
+            }else{
+                $page->setError('E-Mail or Password not valid');
+            }
+        }else{
+            $page->setError('Wrong input');
+        }
+        $page->render();
+    }
+
+
+    /**
+    * loggt den aktuellen Benutzer aus 
+    * dabei wird nicht überprüft ob ein Nutzer angemeldet wird sondern es wird
+    * der Nutzer Wert der Session entfernt und die session beendet 
+    */
+    public function logout(){
+        session_destroy();
     }
 
     /**
@@ -36,8 +61,15 @@ class LoginController{
         $account = $this->createAccountFromParams(false);
         if ($account != NULL){
             $dao = new AccountDAOMySQL();
-            $dao->register($account);
-            $page->setMessage('Registered successfully');
+            if ($account->validate()){
+                if ($dao->register($account)){
+                    $page->setMessage('Registered successfully');
+                }else{
+                    $page->setError('Input Error');
+                }
+            }else{
+                $page->setError($account->getLastValidateError());
+            }
         }else{
             $page->setError('Could not register');
         }

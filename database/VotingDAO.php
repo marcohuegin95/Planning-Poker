@@ -5,7 +5,7 @@
  * Interface for voting operations
  */
 interface VotingDAO{
-    function save($vote);
+    function insert($vote);
     function getVotings($byAccountId);
 }
 
