@@ -1,0 +1,41 @@
+/* Quelle: https://stackoverflow.com/questions/25650553/how-to-pass-numbers-in-bootstrap-3-glyphicons am 13.10.2018 */
+/* QUelle: https://stackoverflow.com/questions/10085723/twitter-bootstrap-add-top-space-between-rows am 13.10.2018*/
+/* Custom Desgin für Icons in Abschätzung*/
+.numberCircle {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    padding: 14px;
+    background: #fff;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font: 32px Arial, sans-serif;
+    display: inline-block;
+}
+.numberCircleHundert {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    padding-right: 2px;
+    padding-top: 15px;
+    background: #fff;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font: 32px Arial, sans-serif;
+    display: inline-block;
+}
+.numberCircleWithComma {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    padding: 14px;
+    background: #fff;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font: 30px Arial, sans-serif;
+    display: inline-block;
+}
+.top-buffer { margin-top:30px; }

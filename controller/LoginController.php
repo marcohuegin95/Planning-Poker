@@ -16,7 +16,7 @@ class LoginController{
     */
     public function index(){
         $page = new LoginPage();
-        $page->render();
+        $page->render()
     }
 
     /**

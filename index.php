@@ -7,3 +7,6 @@ session_start();
 
 $router = new Router();
 $router->dispatch($_SERVER['REQUEST_URI']);
+
+session_destroy();
+?>
