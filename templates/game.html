@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            User-Story <b>[1/10]</b>
+                            User-Story <b>[<span id="idAktuelleStory">1</span>/<span id="anzahlStorys">10</span>]</b>
                             <a href="#">
                                 <i class="fa fa-arrow-left" style="font-size:40px;color:blue"></i>
                             </a>
@@ -62,9 +62,9 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">Optimierung der DB-Anbindung</h2>
+                        <h2 class="card-title" id="aktuelleUserstoryTitel">Optimierung der DB-Anbindung</h2>
                         </br>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                        <p class="card-text" id="aktuelleUserstoryBeschreibung">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
                             eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
                             eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
                             sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
@@ -78,61 +78,53 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Schätzung: <b>Projektname</b>
+                            Schätzung: <b id="projektname">Projektname</b>
                         </h3>
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Null">
                             <div class="numberCircle">0</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_EinHalb">
                             <div class="numberCircleWithComma">0,5</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Eins">
                             <div class="numberCircle">1</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Zwei">
                             <div class="numberCircle">2</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Drei">
                             <div class="numberCircle">3</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Fuenf">
                             <div class="numberCircle">5</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Acht">
                             <div class="numberCircle">8</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Dreizehn">
                             <div class="numberCircle">13</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Zwanzig">
                             <div class="numberCircle">20</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Vierzig">
                             <div class="numberCircle">40</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="buttin_Hundert">
                             <div class="numberCircleHundert">100</div></br>SP
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="button_Fragezeichen">
                             <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
                         </button>
                     </div>
                     <div class="col-*-*">
                         <div class="row top-buffer"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-3">
+                    <div class="text-center">
                             <a href="#" class="btn btn-lg btn-success"><i class="fa fa-hand-o-left" style="font-size:36px"></i>
                                 Schätzen</a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="#" class="btn btn-lg btn-danger"><i class="fa fa-trash-o" style="font-size:36px"></i>
-                                Schätzung aufheben</a>
-                        </div>
-                        <div class="col-sm-3"></div>
                     </div>
                     <div class="col-*-*">
                         <div class="row top-buffer"></div>
@@ -155,7 +147,7 @@
                                 <h3><b>Restzeit:</b></h3>
                             </div>
                             <div class="col-sm-8">
-                                <h3><span><b>1</b>d, <b>5</b>h, <b>32</b>min</span></h3>
+                                <h3><span><b id="restzeitTage">1</b>d, <b id="restzeitStunden">5</b>h, <b id="restzeitMinuten">32</b>min</span></h3>
                             </div>
                         </div>
                         <div class="row">
@@ -206,12 +198,12 @@
                     <div class="card-body">
                         <p class="card-text">
                             <h3>Du hast diese Aufgabe auf <b>
-                                    <font color="red">4 Story Points</font>
+                                    <font color="red"><span id="eigeneSchaetzung">4</span> Story Points</font>
                                 </b> geschätzt!</h3><br>
                         </p>
                         <p class="card-text">
                             <h3>Bisher haben <b>
-                                    <font color="red">4 Teilnehmer</font>
+                                    <font color="red"><span id="anzahlTeilnehmerMitAbschaetzung">5</span> Teilnehmer</font>
                                 </b> abgeschätzt.</h3><br>
                         </p>
                     </div>
@@ -223,9 +215,11 @@
                 <div class="d-flex justify-content-between">
                     <div>
                     </div>
-                    <div>
+                    <div
+                    ><a href="" id="aktuellesSpielLink">
                         <i class="fa fa-link" style="font-size:48px;color:red"></i>
-                        <h2>Link</h2>
+                        <h2><font color="red">Link</font></h2>
+                    </a>
                     </div>
                 </div>
             </div>

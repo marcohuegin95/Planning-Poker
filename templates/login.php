@@ -1,50 +1,22 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Account-Einstellungen</title>
-    <h1 class="text-hide" style="background-image: url('/images/karte.png); width: 50px; height: 50px;">Bootstrap</h1>
-    <link rel="stylesheet" href="templates/css/bewertung.css">
-    <link rel="stylesheet" href="templates/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="templates/css/index.css">
-
+    <link rel="stylesheet" href="/templates/css/bewertung.css">
+    <link rel="stylesheet" href="/templates/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/templates/css/index.css">
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Planning Poker</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="mr-auto">
-
-            </div>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        timonmw@gmail.com
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Log out</a>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <div class="jumbotron">
-    <?php echo $this->err;
-          echo $this->message;  
-                            ?>
+    <div class="text-center">
+        <h1>Wilkommen zum Planning Poker!</h1>
+    </div>
+    <div class="col-*-*">
+            <div class="row top-buffer"></div>
+    </div>
     <div class="container">
         <div id="loginFrame" class="row">
             <div class="col-md-4"></div>
@@ -60,7 +32,6 @@
                                 <a class="nav-link" data-toggle="tab" href="#register">Registrieren</a>
                             </li>
                         </ul>
-
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
@@ -80,24 +51,7 @@
                             </div>
 
                             <div id="register" class="tab-pane">
-                                <form action="/Register" method="post">
-                                <div class="form-group">
-                                        <label for="inputUser">Vorname</label>
-                                        <input name="vorname" type="test" class="form-control" id="registertVorname" placeholder="Vorname eingeben" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputUser">Nachname</label>
-                                        <input name="nachname" type="test" class="form-control" id="registertNachname" placeholder="Nachname eingeben" required>
-                                        </div>
-                                        <div class="form-group">
-                                    <label for="sel1">Erfahrung des Mitarbeiter</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Gar keine</option>
-                                        <option>Wenig</option>
-                                        <option>Einige</option>
-                                        <option>Viel</option>
-                                    </select>
-                                    </div>                               
+                                <form action="/Register" method="post">                             
                                     <div class="form-group">
                                         <label for="inputUser">Username</label>
                                         <input name="username" type="test" class="form-control" id="registertUser" placeholder="Username eingeben" required>
@@ -122,9 +76,9 @@
         </div>
     </div>
     </div>
-    <script src="templates/js/jquery/jquery-3.3.1.min.js"></script>
-    <script src="templates/js/popper.min.js"></script>
-    <script src="templates/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/templates/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/templates/js/popper.min.js"></script>
+    <script src="/templates/js/bootstrap/bootstrap.min.js"></script>
 
 </body>
 
