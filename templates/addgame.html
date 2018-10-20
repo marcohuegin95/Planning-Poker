@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Neues Spiel erstellen</title>
-    <h1 class="text-hide" style="background-image: url('/images/karte.png); width: 50px; height: 50px;">Bootstrap</h1>
-    <link rel="stylesheet" href="css/bewertung.css">
+    <link rel="stylesheet" href="css/addgame.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -23,10 +23,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="mr-auto">
-
             </div>
             </ul>
-            <ul class="navbar-nav">
+            <ol class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -35,10 +34,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Log out</a>
-
                     </div>
                 </li>
-            </ul>
+            </ol>
         </div>
     </nav>
     <div class="jumbotron">
@@ -57,69 +55,80 @@
         <div class="col-*-*">
             <div class="row top-buffer"></div>
         </div>
-        <div class="row">
-            <div class="col-sm-2">
-            </div>
-            <div class="col-sm-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-auto">
-                                <h4>Titel: </h4>
-                            </div>
-                            <div class="col-sm-auto">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="titelNewGame" aria-describedby="emailHelp"
-                                        placeholder="Titel eingeben">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-auto">
-                                <h4>Teilnehmer:</h4>
-                            </div>
-                            <div class="col-sm-auto">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Marco</li>
-                                    <li class="list-group-item">Timon</li>
-                                    <li class="list-group-item">Maxi Hans Tests </li>
-                                    <li class="list-group-item">Hans Peter Hans</li>
-                                </ul>
-                                <button>Teilnehmer hinzufügen</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-auto">
-                            </br>
-                            </div>
-                            <div class="col-sm-auto">
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-auto">
-                                <h4>User-Story: </h4>
-                            </div>
-                            <div class="col-sm-auto">
-                                    <ul class="list-group">
-                                            <li class="list-group-item">User-Story 1</li>
-                                            <li class="list-group-item">User-Story 2</li>
-                                            <li class="list-group-item">User-Story 3</li>
-                                            <li class="list-group-item">User-Story 4</li>
-                                        </ul>
-                                        <button>User-Story hinzufügen</button>
-                            </div>
+        <div class="container">
+            <div class="row justify-center">
+                <div class="col-8">
+                    <div class="form-group">
+                        <h4><label>Titel</label></h4>
+                        <input type="text" class="form-control" id="titelNeuesSpiel" placeholder="Titel eingeben">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h4><label>Teilnehmer</label></h4>
+                    <div class="input-group mb-3">
+                        <input id="userinput" type="text" class="form-control" placeholder="Einen Teilnehmer hinzufügen">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" id="enter" type="button">Hinzufügen</button>
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <ul class="list-group">
+                    </ul>
+                    <div class="col-*-*">
+                        <div class="row top-buffer"></div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <h4><label>User-Story hinzufügen</label></h4>
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="col-md-12 table-responsive">
+                                    <table class="table table-bordered table-hover table-sortable" id="tab_logic">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    Titel
+                                                </th>
+                                                <th class="text-center">
+                                                    Beschreibung
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id='addr0' data-id="0" class="hidden">
+                                                <td data-name="name">
+                                                    <input type="text" name='name0' placeholder='Titel eingeben' class="form-control" />
+                                                </td>
+                                                <td data-name="mail">
+                                                    <input type="text" name='mail0' placeholder='Beschreibung eingeben'
+                                                        class="form-control" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <a id="add_row" class="btn btn-primary">User-Story hinzufügen</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="text-center">
+                        <a href="#" class="btn btn-lg btn-success"><i class="fa fa-save" style="font-size:36px"></i>
+                            Speichern</a>
+                        <a href="#" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
+                            Abbrechen</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-2"></div>
         </div>
-    </div>
     </div>
     <script src="js/jquery/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/newgame.js"></script>
 
 </body>
 
