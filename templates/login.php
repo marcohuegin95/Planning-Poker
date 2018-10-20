@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Account-Einstellungen</title>
     <h1 class="text-hide" style="background-image: url('/images/karte.png); width: 50px; height: 50px;">Bootstrap</h1>
-    <link rel="stylesheet" href="css/bewertung.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="templates/css/bewertung.css">
+    <link rel="stylesheet" href="templates/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="templates/css/index.css">
 
 </head>
 
@@ -122,9 +122,9 @@
         </div>
     </div>
     </div>
-    <script src="js/jquery/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="templates/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="templates/js/popper.min.js"></script>
+    <script src="templates/js/bootstrap/bootstrap.min.js"></script>
 
 </body>
 
