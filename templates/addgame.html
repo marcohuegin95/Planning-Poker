@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Neues Spiel erstellen</title>
-    <link rel="stylesheet" href="css/addgame.css">
+    <link rel="stylesheet" href="/templates/css/addgame.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,14 +64,14 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <h4><label>Teilnehmer</label></h4>
+                    <h4><label>Teilnehmer  <font color="red"><label id="warnungTeilnehmerHinzufuegen"></label></font></label></h4>
                     <div class="input-group mb-3">
                         <input id="userinput" type="text" class="form-control" placeholder="Einen Teilnehmer hinzufügen">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" id="enter" type="button">Hinzufügen</button>
+                            <button class="btn btn-primary" id="btn_teilnehmerHinzufuegen" type="button">Hinzufügen</button>
                         </div>
                     </div>
-                </div>
+                </div>    
                 <div class="col-12">
                     <ul class="list-group">
                     </ul>
@@ -110,7 +110,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <a id="add_row" class="btn btn-primary">User-Story hinzufügen</a>
+                            <a id="btn_storyHinzufuegen" class="btn btn-primary">User-Story hinzufügen</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
     <script src="js/jquery/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/newgame.js"></script>
+    <script src="js/addgame.js"></script>
 
 </body>
 
