@@ -4,13 +4,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Account-Einstellungen</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/templates/css/bewertung.css">
     <link rel="stylesheet" href="/templates/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="/templates/css/index.css">
 </head>
 <body>
     <div class="jumbotron">
+
     <div class="text-center">
         <h1>Wilkommen zum Planning Poker!</h1>
     </div>
@@ -34,6 +35,9 @@
                         </ul>
                     </div>
                     <div class="card-body">
+                    <?php   echo $this->err;
+                            echo $this->message;  
+                            ?>
                         <div class="tab-content">
                             <div id="login" class="tab-pane active">
                                 <form action="/Login" method="post">

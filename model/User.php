@@ -1,11 +1,12 @@
 <?php 
 
 /**
- * Account
+ * User
  *
- * Simple account object, entrypts the password and can be validated
+ * Simple User Object
+ * Stores the points voted for a specific user story
  */
-class Account{
+class User{
 
     private $id;
 
@@ -16,6 +17,8 @@ class Account{
     private $password;
 
     private $validate_error;
+
+
 
     
     public function validate(){

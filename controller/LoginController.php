@@ -2,7 +2,7 @@
 
 require 'views/LoginPage.php';
 require 'database/AccountDAOMySQL.php';
-require 'model/Account.php';
+require 'model/User.php';
 
 /**
  * Route
@@ -28,15 +28,18 @@ class LoginController{
         $account = $this->createAccountFromParams(true);
         if ($account != NULL){
             $dao = new AccountDAOMySQL();
-            if ($dao->findAndSetId($account)){
+            if ($dao->findAndFill($account)){
                 $_SESSION["userid"] = $account->getId();
-                header("Location: /dashboard");
+                $_SESSION["username"] = $account->getUsername();
+                $_SESSION["email"] = $account->getEmail();
+                
+                header("Location: /Dashboard");
                 die();
             }else{
-                $page->setError('E-Mail or Password not valid');
+                $page->setError('E-Mail oder Password falsch');
             }
         }else{
-            $page->setError('Wrong input');
+            $page->setError('Falsche Eingaben');
         }
         $page->render();
     }
@@ -49,6 +52,8 @@ class LoginController{
     */
     public function logout(){
         session_destroy();
+        header("Location: /");
+        die();
     }
 
     /**
@@ -63,15 +68,15 @@ class LoginController{
             $dao = new AccountDAOMySQL();
             if ($account->validate()){
                 if ($dao->register($account)){
-                    $page->setMessage('Registered successfully');
+                    $page->setMessage('Erfolgreich registriert');
                 }else{
-                    $page->setError('Input Error');
+                    $page->setError('Fehler beim Speichern');
                 }
             }else{
                 $page->setError($account->getLastValidateError());
             }
         }else{
-            $page->setError('Could not register');
+            $page->setError('Falsche Eingaben');
         }
 
         $page->render();
@@ -83,7 +88,7 @@ class LoginController{
     */
     private function createAccountFromParams($onlyemail){
         if (($onlyemail  || isset($_POST['username'])) && isset($_POST['email']) && isset($_POST['password'])){
-            $account = new Account();
+            $account = new User();
             if (!$onlyemail){
                 $account->setUsername($_POST['username']);
             }

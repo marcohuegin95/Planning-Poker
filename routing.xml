@@ -26,10 +26,18 @@
     </route>
 
     <route>
-        <url>/Test</url>
+        <url>/Dashboard</url>
         <controller>PokerController</controller>
         <action>index</action>
         <filter>LoginFilter</filter>
     </route>
+
+    <route>
+        <url>/Newgame</url>
+        <controller>PokerController</controller>
+        <action>newgame</action>
+        <filter>LoginFilter</filter>
+    </route>
+
 
 </routes>

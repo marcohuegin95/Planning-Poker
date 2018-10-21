@@ -1,4 +1,5 @@
 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -17,7 +18,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `accounts`
+-- Tabellenstruktur für Tabelle `rel_vote_user`
+--
+
+CREATE TABLE `rel_vote_user` (
+  `fk_user` int(11) NOT NULL,
+  `fk_vote` int(11) NOT NULL,
+  `points_voted` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `user`
 --
 
 CREATE TABLE `user` (
@@ -27,28 +41,6 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `rel_voting_accounts`
---
-
-CREATE TABLE `rel_vote_user` (
-  `fk_user` int(11) NOT NULL,
-  `fk_vote` int(11) NOT NULL,
-  `points_voted` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `rel_voting_user_story`
---
-
-CREATE TABLE `rel_vote_user_story` (
-  `fk_user_story` int(11) NOT NULL,
-  `fk_vote` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -59,42 +51,34 @@ CREATE TABLE `rel_vote_user_story` (
 CREATE TABLE `user_story` (
   `id` int(11) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `end` date NOT NULL
+  `fk_vote` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `voting`
+-- Tabellenstruktur für Tabelle `vote`
 --
 
 CREATE TABLE `vote` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `end` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Indizes der exportierten Tabellen
---
 
 --
--- Indizes für die Tabelle `accounts`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indizes für die Tabelle `rel_voting_accounts`
+-- Indizes für die Tabelle `rel_vote_user`
 --
 ALTER TABLE `rel_vote_user`
   ADD PRIMARY KEY (`fk_user`,`fk_vote`);
 
 --
--- Indizes für die Tabelle `rel_voting_user_sotry`
+-- Indizes für die Tabelle `user`
 --
-ALTER TABLE `rel_vote_user_story`
-  ADD PRIMARY KEY (`fk_user_story`,`fk_vote`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indizes für die Tabelle `user_story`
@@ -103,7 +87,7 @@ ALTER TABLE `user_story`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `voting`
+-- Indizes für die Tabelle `vote`
 --
 ALTER TABLE `vote`
   ADD PRIMARY KEY (`id`);
@@ -113,22 +97,22 @@ ALTER TABLE `vote`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `accounts`
+-- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `user_story`
 --
 ALTER TABLE `user_story`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT für Tabelle `voting`
+-- AUTO_INCREMENT für Tabelle `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

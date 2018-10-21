@@ -7,10 +7,6 @@ class UserStory{
 
     private $description;
 
-    private $end;
-
-
-
     /**
      * Get the value of id
      */ 
@@ -70,6 +66,7 @@ class UserStory{
 
         return $this;
     }
+
 }
 
 ?>

@@ -8,6 +8,8 @@ class Vote{
 
     private $name;
 
+    private $end;
+
     private $users = [];
 
     private $user_storys = [];
@@ -101,6 +103,26 @@ class Vote{
         return true;
     }
 
+
+    /**
+     * Get the value of end
+     */ 
+    public function getEnd()
+    {
+        return $this->end;
+    }
+
+    /**
+     * Set the value of end
+     *
+     * @return  self
+     */ 
+    public function setEnd($end)
+    {
+        $this->end = $end;
+
+        return $this;
+    }
 }
 
 

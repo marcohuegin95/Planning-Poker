@@ -2,7 +2,7 @@
 
 require 'VotingDAO.php';
 require 'model/Vote.php';
-require 'model/Account.php';
+require 'model/User.php';
 require 'Connection.php';
 /**
  * VotingtDAO
@@ -54,31 +54,29 @@ class VotingDAOMySQL implements VotingDAO{
     }
 
     private function insertUserStory($con, $vote, $story){
-	    $stmt = $con->prepare("INSERT user_story (description, end) VALUES (:description, :end)");
+	    $stmt = $con->prepare("INSERT user_story (description, end, fk_vote) VALUES (:description, :end, :fk_vote)");
                 $stmt->bindParam(':description', $description_var);
                 $stmt->bindParam(':end', $end_var);
+                $stmt->bindParam(':fk_vote', $fk_vote_var);
+                
                 
                 $description_var = $story->getDescription();
                 $end_var = $story->getEnd();
+                $fk_vote_var = $vote->getId();
                 $stmt->execute(); 
 				
 		$story_id = $con->lastInsertId();
 		$story->setId($story_id);
-	
-        $stmt = $con->prepare("INSERT rel_vote_user_story (fk_user_story, fk_vote) VALUES (:storyid, :voteid)");
-                $stmt->bindParam(':storyid', $story_id_var);
-                $stmt->bindParam(':voteid', $vote_id_var);
-                
-                $vote_id_var = $vote->getId();
-                $story_id_var = $story->getId();
-                $stmt->execute(); 
+
     }
     
 
     private function insertIntoVotes($con, $vote){
-        $stmt = $con->prepare("INSERT INTO vote (name) VALUES (:name)");
+        $stmt = $con->prepare("INSERT INTO vote (name, end) VALUES (:name, :end)");
                 $stmt->bindParam(':name', $name_var);
-        
+                $stmt->bindParam(':end', $end_var);
+                
+                $end_var = $vote->getEnd();
                 $name_var = $vote->getName();
                 $stmt->execute(); 
         return $con->lastInsertId();
@@ -87,7 +85,7 @@ class VotingDAOMySQL implements VotingDAO{
     
     private function getUserStorys($con, $byVoteId){
         $result = [];
-        $stmt = $con->prepare("SELECT story.id, story.description,story.end FROM user_story story INNER JOIN rel_vote_user_story rel_story ON story.id = rel_story.fk_user_story WHERE rel_story.fk_vote = :voteid");
+        $stmt = $con->prepare("SELECT story.id, story.description FROM user_story story WHERE story.fk_vote = :voteid");
         $stmt->bindParam(':voteid', $voteid_var);
         $voteid_var = $byVoteId;
         try{
@@ -95,8 +93,7 @@ class VotingDAOMySQL implements VotingDAO{
             while($row = $stmt->fetch()) {
                 $story = new UserStory();
                 $story->setId($row['id']);
-                $story->setDescription($row['description']);
-                $story->setEnd($row['end']);               
+                $story->setDescription($row['description']);             
                 $result[] = $story;
 
              }
@@ -116,7 +113,7 @@ class VotingDAOMySQL implements VotingDAO{
         try{
             $stmt->execute();
             while($row = $stmt->fetch()) {
-                $acc = new Account();
+                $acc = new User();
                 $acc->setId($row['id']);
                 $acc->setUsername($row['username']);
                 $acc->setEmail($row['email']);
@@ -135,7 +132,7 @@ class VotingDAOMySQL implements VotingDAO{
     function getVotings($byAccountId){
         $result = [];
         $con = Connection::createConnection();
-        $stmt = $con->prepare("SELECT v.id, v.name FROM vote v INNER JOIN rel_vote_user rel_usr ON v.id = rel_usr.fk_vote WHERE  rel_usr.fk_user = :userid");
+        $stmt = $con->prepare("SELECT v.id, v.name, v.end FROM vote v INNER JOIN rel_vote_user rel_usr ON v.id = rel_usr.fk_vote WHERE  rel_usr.fk_user = :userid");
         $stmt->bindParam(':userid', $userid_var);
         $userid_var = $byAccountId;
         try{
@@ -144,10 +141,10 @@ class VotingDAOMySQL implements VotingDAO{
                 $vote = new Vote();
                 $vote->setId($row['id']);
                 $vote->setName($row['name']);
+                $vote->setEnd($row['end']);
                 $vote->setUserStorys($this->getUserStorys($con, $row['id']));
                 $vote->setUsers($this->getUsers($con, $row['id']));
                 $result[] = $vote;
-                print_r($vote);
 
              }
     

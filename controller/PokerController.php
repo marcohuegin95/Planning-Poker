@@ -2,6 +2,7 @@
 
 require 'database/VotingDAOMySQL.php';
 require 'model/UserStory.php';
+require 'views/DashboardPage.php';
 
 /**
  * Route
@@ -15,8 +16,10 @@ class PokerController{
     */
     public function index(){
         $dao = new VotingDAOMySQL();
-        $dao->getVotings(7);  
-        echo 'asd';
+        $votes = $dao->getVotings($_SESSION["userid"]);  
+        
+        $page = new DashboardPage($votes);
+        $page->render();
     }
 
 
