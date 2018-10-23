@@ -94,7 +94,7 @@
             </div>
             <div class="col-12">
                 <div class="form-group">
-                    <h4><label>User-Story hinzufügen</label></h4>
+                    <h4><label>User-Story hinzufügen <font color="red"><label id="warnungUserStoryHinzufuegen"></label></font></label></h4></label></h4>
 
                     <div class="row clearfix">
                         <div class="col-md-12 table-responsive">

@@ -2,6 +2,7 @@
   * @desc jQuery-Funktion, welche das Handling (Event) steuert, wenn der Benutzer ein Titel in das Titel-Feld eingibt
 */
 var inputTitel = document.getElementById("in_titelNeuesProjekt");
+
 inputTitel.addEventListener("input", function () {
     var minCharTitel = 4;
     var maxCharTitel = 15;
@@ -16,60 +17,70 @@ inputTitel.addEventListener("input", function () {
 /**
   * @desc jQuery-Funktion, welche das Handling steuert, wenn eine neue User-Story erstellt wird.
 */
+var inputErsteStoryTitel = document.getElementById("in_storyTitel");
+var inputErsteStoryBeschreibung = document.getElementById("in_storyBeschreibung");
+
 $(document).ready(function () {
     $("#btn_storyHinzufuegen").on("click", function () {
-        // Get max row id and set new id
-        var newid = 0;
-        $.each($("#tab_logic tr"), function () {
-            if (parseInt($(this).data("id")) > newid) {
-                newid = parseInt($(this).data("id"));
-            }
-        });
-        newid++;
+        // Prüfen, ob Felder der ersten User Story bereits ausgefüllt worden sind
+        if (($(inputErsteStoryTitel).val().length > 0) && ($(inputErsteStoryBeschreibung).val().length > 0)) {
+            $('#warnungUserStoryHinzufuegen').html("");
+            // Get max row id and set new id
+            var newid = 0;
+            $.each($("#tab_logic tr"), function () {
+                if (parseInt($(this).data("id")) > newid) {
+                    newid = parseInt($(this).data("id"));
+                }
+            });
+            newid++;
 
-        var tr = $("<tr></tr>", {
-            id: "addr" + newid,
-            "data-id": newid
-        });
+            var tr = $("<tr></tr>", {
+                id: "addr" + newid,
+                "data-id": newid
+            });
 
-        // loop through each td and create new elements with name of newid
-        $.each($("#tab_logic tbody tr:nth(0) td"), function () {
-            var cur_td = $(this);
+            // loop through each td and create new elements with name of newid
+            $.each($("#tab_logic tbody tr:nth(0) td"), function () {
+                var cur_td = $(this);
 
-            var children = cur_td.children();
+                var children = cur_td.children();
 
-            // add new td and element if it has a nane
-            if ($(this).data("name") != undefined) {
-                var td = $("<td></td>", {
-                    "data-name": $(cur_td).data("name")
-                });
+                // add new td and element if it has a nane
+                if ($(this).data("name") != undefined) {
+                    var td = $("<td></td>", {
+                        "data-name": $(cur_td).data("name")
+                    });
 
-                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-                c.attr("name", $(cur_td).data("name") + "[]");
-                c.appendTo($(td));
-                td.appendTo($(tr));
-            } else {
-                var td = $("<td></td>", {
-                    'text': $('#tab_logic tr').length
-                }).appendTo($(tr));
-            }
-        });
+                    var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
+                    c.attr("name", $(cur_td).data("name") + "[]");
+                    c.appendTo($(td));
+                    td.appendTo($(tr));
+                } else {
+                    var td = $("<td></td>", {
+                        'text': $('#tab_logic tr').length
+                    }).appendTo($(tr));
+                }
+            });
 
-        // add delete button and td
-        $("<td></td>").append(
-            $("<button type='button' class='btn btn-danger'>Löschen</button>")
-                .click(function () {
-                    $(this).closest("tr").remove();
-                })
-        ).appendTo($(tr));
+            // add delete button and td
+            $("<td></td>").append(
+                $("<button type='button' class='btn btn-danger'>Löschen</button>")
+                    .click(function () {
+                        $(this).closest("tr").remove();
+                    })
+            ).appendTo($(tr));
 
 
-        // add the new row
-        $(tr).appendTo($('#tab_logic'));
+            // add the new row
+            $(tr).appendTo($('#tab_logic'));
 
-        $(tr).find("td button.row-remove").on("click", function () {
-            $(this).closest("tr").remove();
-        });
+            $(tr).find("td button.row-remove").on("click", function () {
+                $(this).closest("tr").remove();
+            });
+
+        } else {
+            $('#warnungUserStoryHinzufuegen').html("(Bitte Felder der ersten User-Story ausfüllen, bevor mehr User-Story erstellt werden können)");
+        }
     });
 });
 
@@ -89,9 +100,9 @@ inputTitel.addEventListener("input", function () {
     }
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#multiselect').multiselect({
-        allSelectedText: 'All', 
+        allSelectedText: 'All',
         numberDisplayed: 5,
         buttonWidth: '100%',
         includeSelectAllOption: true,
