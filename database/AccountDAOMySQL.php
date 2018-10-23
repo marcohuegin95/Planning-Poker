@@ -72,5 +72,27 @@ class AccountDAOMySQL implements AccountDAO{
 
     }
 
+    public function getUserById($id){
+        $con = Connection::createConnection();
+
+        try{
+            $stmt = $con->prepare("SELECT id, username, email FROM user where  (id = ?)");
+            if ($stmt->execute(array($id))) {
+                if ($stmt->rowCount() > 0){
+                    $row = $stmt->fetch();
+                    $user = new User();
+                    $user->setId($row['id']);
+                    $user->setUsername($row['username']);
+                    $user->setEmail($row['email']);
+                    return $user;
+                }
+            }
+        }catch(Exception $e){
+            //TODO
+        }
+            
+        return NULL;        
+    }
+
 }
 ?>

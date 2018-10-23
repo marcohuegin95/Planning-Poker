@@ -45,7 +45,7 @@ $(document).ready(function () {
                 });
 
                 var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-                c.attr("name", $(cur_td).data("name") + newid);
+                c.attr("name", $(cur_td).data("name") + "[]");
                 c.appendTo($(td));
                 td.appendTo($(tr));
             } else {

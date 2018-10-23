@@ -50,9 +50,11 @@ CREATE TABLE `user` (
 
 CREATE TABLE `user_story` (
   `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `description` varchar(500) NOT NULL,
   `fk_vote` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT für Tabelle `user_story`

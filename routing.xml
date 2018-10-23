@@ -39,5 +39,11 @@
         <filter>LoginFilter</filter>
     </route>
 
+    <route>
+        <url>/newgame/add</url>
+        <controller>PokerController</controller>
+        <action>saveGame</action>
+        <filter>LoginFilter</filter>
+    </route>
 
 </routes>

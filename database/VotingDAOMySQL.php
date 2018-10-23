@@ -12,6 +12,7 @@ class VotingDAOMySQL implements VotingDAO{
     
     
     function insert($vote){
+        
         if ($vote->validate()){
             $con = Connection::createConnection();
 
@@ -21,14 +22,14 @@ class VotingDAOMySQL implements VotingDAO{
                 //save vote object and retrieve the new id from the database
                 $new_vote_id = $this->insertIntoVotes($con, $vote);
                 $vote->setId($new_vote_id);
-
+                
 				foreach($vote->getUsers() as $user){
 					$this->insertUserRelations($con, $vote, $user);
 				}
 
 				foreach($vote->getUserStorys() as $story){
 					$this->insertUserStory($con, $vote, $story);
-				}
+                }
                
                 $con->commit();
                 return true;
@@ -53,18 +54,18 @@ class VotingDAOMySQL implements VotingDAO{
     }
 
     private function insertUserStory($con, $vote, $story){
-	    $stmt = $con->prepare("INSERT user_story (description, end, fk_vote) VALUES (:description, :end, :fk_vote)");
+	    $stmt = $con->prepare("INSERT user_story (title, description, fk_vote) VALUES (:title, :description, :fk_vote)");
                 $stmt->bindParam(':description', $description_var);
-                $stmt->bindParam(':end', $end_var);
+                $stmt->bindParam(':title', $title_var);
                 $stmt->bindParam(':fk_vote', $fk_vote_var);
                 
                 
                 $description_var = $story->getDescription();
-                $end_var = $story->getEnd();
+                $title_var = $story->getTitle();
                 $fk_vote_var = $vote->getId();
                 $stmt->execute(); 
 				
-		$story_id = $con->lastInsertId();
+        $story_id = $con->lastInsertId();
 		$story->setId($story_id);
 
     }
@@ -84,7 +85,7 @@ class VotingDAOMySQL implements VotingDAO{
     
     private function getUserStorys($con, $byVoteId){
         $result = [];
-        $stmt = $con->prepare("SELECT story.id, story.description FROM user_story story WHERE story.fk_vote = :voteid");
+        $stmt = $con->prepare("SELECT story.id,story.title, story.description FROM user_story story WHERE story.fk_vote = :voteid");
         $stmt->bindParam(':voteid', $voteid_var);
         $voteid_var = $byVoteId;
         try{
@@ -92,6 +93,7 @@ class VotingDAOMySQL implements VotingDAO{
             while($row = $stmt->fetch()) {
                 $story = new UserStory();
                 $story->setId($row['id']);
+                $story->setTitle($row['title']);
                 $story->setDescription($row['description']);             
                 $result[] = $story;
 

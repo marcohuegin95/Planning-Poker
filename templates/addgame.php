@@ -55,7 +55,7 @@
         <div class="col-*-*">
             <div class="row top-buffer"></div>
         </div>
-        <form method="post" action="/Newgame">
+        <form method="post" action="/newgame/add">
             <div class="row justify-center">
                 <div class="col-8">
                     <div class="form-group">
@@ -111,11 +111,11 @@
                                 </thead>
                                 <tbody>
                                     <tr id='addr0' data-id="0" class="hidden">
-                                        <td data-name="name">
+                                        <td data-name="story_names">
                                             <input type="text" id="in_storyTitel" placeholder='Story-Titel eingeben'
                                                 class="form-control" />
                                         </td>
-                                        <td data-name="mail">
+                                        <td data-name="story_descriptions">
                                             <input type="text" id="in_storyBeschreibung" placeholder='Beschreibung eingeben'
                                                 class="form-control" />
                                         </td>
@@ -130,6 +130,7 @@
             </div>
             <div class="col-12">
                 <div class="text-center">
+                <button type="submit" class="btn btn-primary">speichern</button>
                     <a href="#" class="btn btn-lg btn-success" type="submit" id="btn_speichern"><i class="fa fa-save" style="font-size:36px"></i>
                         Speichern</a>
                     <a href="#" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
