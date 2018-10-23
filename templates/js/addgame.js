@@ -1,22 +1,35 @@
+/**
+  * @desc jQuery-Funktion, welche das Handling (Event) steuert, wenn der Benutzer ein Titel in das Titel-Feld eingibt
+*/
+var inputTitel = document.getElementById("in_titelNeuesProjekt");
+inputTitel.addEventListener("input", function () {
+    var minCharTitel = 4;
+    var maxCharTitel = 15;
+    if (($(inputTitel).val().length >= minCharTitel) && ($(inputTitel).val().length < maxCharTitel)) {
+        $('#warnungTitel').html("");
+    } else {
+        $('#warnungTitel').html("(Bitte einen gültigen Titel wählen, 4-15 Zeichen)");
+    }
+})
+
 //https://stackoverflow.com/questions/16668906/onclick-on-bootstrap-button (20.10.2018)
 /**
   * @desc jQuery-Funktion, welche das Handling steuert, wenn der Button um einen neuen Teilnehmer hinzuzufügen gedrückt wird 
 */
 var hinzufuegeButton = document.getElementById("btn_teilnehmerHinzufuegen");
-var input = document.getElementById("userinput");
+var inputTeilnehmer = document.getElementById("in_teilnehmerHinzufuegen");
 var ul = document.querySelector("ul");
 
 hinzufuegeButton.addEventListener("click", function () {
-
-    if( $(input).val() ){
+    if ($(inputTeilnehmer).val()) {
         $('#warnungTeilnehmerHinzufuegen').html("");
         var li = document.createElement("li");
-        // Add Bootstrap class to the list element
+        // Bootstrap-Klasse zum List-Item(li) hinzufügen
         li.classList.add("list-group-item");
-        li.appendChild(document.createTextNode(input.value));
+        li.appendChild(document.createTextNode(inputTeilnehmer.value));
         ul.appendChild(li);
         // Eingabe in Inputfeld löschen
-        input.value = "";
+        inputTeilnehmer.value = "";
     } else {
         $('#warnungTeilnehmerHinzufuegen').html("(Bitte einen Username angeben!)");
     }
@@ -80,5 +93,30 @@ $(document).ready(function () {
         $(tr).find("td button.row-remove").on("click", function () {
             $(this).closest("tr").remove();
         });
+    });
+});
+
+/**
+  * @desc jQuery-Funktion, welche das Handling (Event) steuert, wenn der Benutzer eine neue User-Story hinzufügt.
+  *       Es müssen erst die bestehende User-Input-Felder (Story-Titel und Beschreibung) ausgefüllt werden
+*/
+var buttonStoryHinzufuegen = document.getElementById("btn_storyHinzufuegen");
+var inputStoryTitel = document.getElementById("in_storyTitel");
+var inputStoryBeschreibung = document.getElementById("in_storyBeschreibung");
+
+inputTitel.addEventListener("input", function () {
+    if (($(inputTitel).val().length >= minCharTitel) && ($(inputTitel).val().length < maxCharTitel)) {
+        $('#warnungTitel').html("");
+    } else {
+        $('#warnungTitel').html("(Bitte einen gültigen Titel wählen, 4-15 Zeichen)");
+    }
+})
+
+$(document).ready(function() {
+    $('#multiselect').multiselect({
+        allSelectedText: 'All', 
+        numberDisplayed: 5,
+        buttonWidth: '100%',
+        includeSelectAllOption: true,
     });
 });
