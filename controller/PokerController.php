@@ -1,8 +1,11 @@
 <?php
 
 require 'database/VotingDAOMySQL.php';
+require 'database/AccountDAOMySQL.php';
 require 'model/UserStory.php';
 require 'views/DashboardPage.php';
+require 'views/NewGamePage.php';
+
 
 /**
  * Route
@@ -22,11 +25,19 @@ class PokerController{
         $page->render();
     }
 
+    public function newGamePage(){
+        $accDao = new AccountDAOMySQL();
+        $users = $accDao->getAllUsers();
+
+        $page = new NewGamePage($users);
+        $page->render();
+    }
 
 
-    public function dashboard(){
-        $dao = new VotingDAOMySQL();
+    private function createUserFromParams(){
+        if(isset($_POST['game_name']) && isset($_POST['users'])){
 
+        }
     }
 
 }

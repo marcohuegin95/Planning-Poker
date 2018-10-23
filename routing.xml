@@ -8,34 +8,34 @@
     </route>
 
     <route>
-        <url>/Register</url>
+        <url>/register</url>
         <controller>LoginController</controller>
         <action>register</action>
     </route>
   
     <route>
-        <url>/Login</url>
+        <url>/login</url>
         <controller>LoginController</controller>
         <action>login</action>
     </route>
 
     <route>
-        <url>/Logout</url>
+        <url>/logout</url>
         <controller>LoginController</controller>
         <action>logout</action>
     </route>
 
     <route>
-        <url>/Dashboard</url>
+        <url>/dashboard</url>
         <controller>PokerController</controller>
         <action>index</action>
         <filter>LoginFilter</filter>
     </route>
 
     <route>
-        <url>/Newgame</url>
+        <url>/newgame</url>
         <controller>PokerController</controller>
-        <action>newgame</action>
+        <action>newGamePage</action>
         <filter>LoginFilter</filter>
     </route>
 

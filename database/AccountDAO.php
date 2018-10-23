@@ -7,6 +7,7 @@
 interface AccountDAO{
     function register($account);
     function findAndFill($account);
+    function getAllUsers();
 }
 
 ?>

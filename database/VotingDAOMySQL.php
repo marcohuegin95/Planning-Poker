@@ -3,7 +3,6 @@
 require 'VotingDAO.php';
 require 'model/Vote.php';
 require 'model/User.php';
-require 'Connection.php';
 /**
  * VotingtDAO
  *

@@ -23,7 +23,7 @@ class Router
         $routes = simplexml_load_file("routing.xml");
         foreach($routes as $route){
             if (isset($route->url) && isset($route->controller) && isset($route->action)){
-                if (strcmp($route->url, $url) == 0){
+                if (strcasecmp($route->url, $url) == 0){
                     return $route;
                 }
              }else{
