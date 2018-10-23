@@ -12,29 +12,6 @@ inputTitel.addEventListener("input", function () {
     }
 })
 
-//https://stackoverflow.com/questions/16668906/onclick-on-bootstrap-button (20.10.2018)
-/**
-  * @desc jQuery-Funktion, welche das Handling steuert, wenn der Button um einen neuen Teilnehmer hinzuzufügen gedrückt wird 
-*/
-var hinzufuegeButton = document.getElementById("btn_teilnehmerHinzufuegen");
-var inputTeilnehmer = document.getElementById("in_teilnehmerHinzufuegen");
-var ul = document.querySelector("ul");
-
-hinzufuegeButton.addEventListener("click", function () {
-    if ($(inputTeilnehmer).val()) {
-        $('#warnungTeilnehmerHinzufuegen').html("");
-        var li = document.createElement("li");
-        // Bootstrap-Klasse zum List-Item(li) hinzufügen
-        li.classList.add("list-group-item");
-        li.appendChild(document.createTextNode(inputTeilnehmer.value));
-        ul.appendChild(li);
-        // Eingabe in Inputfeld löschen
-        inputTeilnehmer.value = "";
-    } else {
-        $('#warnungTeilnehmerHinzufuegen').html("(Bitte einen Username angeben!)");
-    }
-})
-
 // https://bootsnipp.com/snippets/featured/dynamic-sortable-tables (20.10.2018)
 /**
   * @desc jQuery-Funktion, welche das Handling steuert, wenn eine neue User-Story erstellt wird.
