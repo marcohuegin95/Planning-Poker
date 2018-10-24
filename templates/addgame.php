@@ -72,9 +72,17 @@
                                 <option value="" disabled>Bitte Teilnehmer wählen</option>
                                 <?php echo $this->displayUserList() ?>
                             </select>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-12">
+                    <h4><label>Enddatum </label></h4>
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            <input type="date" id="enddatum" name="enddatum" value="2018-12-22" min="2018-12-01" max="2018-12-31" />
+                        </div>
+                    </div>
+                </div>
             <div class="col-12">
                 <ul class="list-group">
                 </ul>
