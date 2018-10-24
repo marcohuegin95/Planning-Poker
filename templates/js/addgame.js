@@ -13,7 +13,6 @@ inputTitel.addEventListener("input", function () {
     }
 })
 
-// https://bootsnipp.com/snippets/featured/dynamic-sortable-tables (20.10.2018)
 /**
   * @desc jQuery-Funktion, welche das Handling steuert, wenn eine neue User-Story erstellt wird.
 */
