@@ -4,12 +4,12 @@
 var inputTitel = document.getElementById("in_titelNeuesProjekt");
 
 inputTitel.addEventListener("input", function () {
-    var minCharTitel = 4;
-    var maxCharTitel = 15;
+    var minCharTitel = 5;
+    var maxCharTitel = 25;
     if (($(inputTitel).val().length >= minCharTitel) && ($(inputTitel).val().length < maxCharTitel)) {
         $('#warnungTitel').html("");
     } else {
-        $('#warnungTitel').html("(Bitte einen gültigen Titel wählen, 4-15 Zeichen)");
+        $('#warnungTitel').html("(Bitte einen gültigen Titel wählen, 5-25 Zeichen)");
     }
 })
 
@@ -22,10 +22,10 @@ var inputErsteStoryBeschreibung = document.getElementById("in_storyBeschreibung"
 
 $(document).ready(function () {
     $("#btn_storyHinzufuegen").on("click", function () {
-        // Prüfen, ob Felder der ersten User Story bereits ausgefüllt worden sind
+        // Prüfen, ob Felder der ersten User Story bereits ausgefüllt worden sind, sonst kann keine neue Story hinzugefügt werden
         if (($(inputErsteStoryTitel).val().length > 0) && ($(inputErsteStoryBeschreibung).val().length > 0)) {
             $('#warnungUserStoryHinzufuegen').html("");
-            // Get max row id and set new id
+            // Hole maximale ID und setze neue
             var newid = 0;
             $.each($("#tab_logic tr"), function () {
                 if (parseInt($(this).data("id")) > newid) {
@@ -84,27 +84,3 @@ $(document).ready(function () {
     });
 });
 
-/**
-  * @desc jQuery-Funktion, welche das Handling (Event) steuert, wenn der Benutzer eine neue User-Story hinzufügt.
-  *       Es müssen erst die bestehende User-Input-Felder (Story-Titel und Beschreibung) ausgefüllt werden
-*/
-var buttonStoryHinzufuegen = document.getElementById("btn_storyHinzufuegen");
-var inputStoryTitel = document.getElementById("in_storyTitel");
-var inputStoryBeschreibung = document.getElementById("in_storyBeschreibung");
-
-inputTitel.addEventListener("input", function () {
-    if (($(inputTitel).val().length >= minCharTitel) && ($(inputTitel).val().length < maxCharTitel)) {
-        $('#warnungTitel').html("");
-    } else {
-        $('#warnungTitel').html("(Bitte einen gültigen Titel wählen, 4-15 Zeichen)");
-    }
-})
-
-$(document).ready(function () {
-    $('#multiselect').multiselect({
-        allSelectedText: 'All',
-        numberDisplayed: 5,
-        buttonWidth: '100%',
-        includeSelectAllOption: true,
-    });
-});

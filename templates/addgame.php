@@ -64,15 +64,6 @@
                             placeholder="Titel eingeben">
                     </div>
                 </div>
-                <!--div class="col-12">
-                    <h4><label>Teilnehmer  <font color="red"><label id="warnungTeilnehmerHinzufuegen"></label></font></label></h4>
-                    <div class="input-group mb-3">
-                        <input id="in_teilnehmerHinzufuegen" type="text" class="form-control" placeholder="Einen Teilnehmer hinzufügen">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" id="btn_teilnehmerHinzufuegen" type="button">Hinzufügen</button>
-                        </div>
-                    </div>
-                </div-->
                 <div class="col-12">
                     <h4><label>Teilnehmer <font color="red"><label id="warnungTeilnehmerHinzufuegen"></label></font></label></h4>
                     <div class="input-group mb-3">
@@ -82,7 +73,6 @@
                                 <?php echo $this->displayUserList() ?>
                             </select>
                     </div>
-
                 </div>
             </div>
             <div class="col-12">
@@ -125,15 +115,12 @@
                         </div>
                     </div>
                     <a id="btn_storyHinzufuegen" class="btn btn-primary">User-Story hinzufügen</a>
-
                 </div>
             </div>
             <div class="col-12">
                 <div class="text-center">
-                <button type="submit" class="btn btn-primary">speichern</button>
-                    <a href="#" class="btn btn-lg btn-success" type="submit" id="btn_speichern"><i class="fa fa-save" style="font-size:36px"></i>
-                        Speichern</a>
-                    <a href="#" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
+                <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-save" style="font-size:36px"></i> Speichern</button>
+                    <a href="/dashboard" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
                         Abbrechen</a>
                 </div>
             </div>

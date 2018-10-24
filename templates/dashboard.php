@@ -68,7 +68,7 @@
                 </div>
                 <div class="card">
                     <div class="text-center">
-                        <a href="#">
+                        <a href="/newgame">
                             <i class="fa fa-plus" style="font-size:50px;color:royalblue"></i>
                             <h4>
                                 <p style="color: royalblue">Neues Spiel</p>
