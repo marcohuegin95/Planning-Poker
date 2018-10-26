@@ -30,7 +30,7 @@ class PokerController{
         if (isset($_GET['id'])){
             print($_GET['id']);
             $dao = new VotingDAOMySQL();
-            $vote = $dao->getVote($_GET['id']);
+            $vote = $dao->getVote($_SESSION['userid'], $_GET['id']);
             $page = new GamePage($vote);
             $page->render();         
         }
@@ -99,6 +99,20 @@ class PokerController{
             return $vote;
         }
         return NULL;
+    }
+
+    public function loadPoints(){
+        if (isset($_GET['userid']) && isset($_GET['storyid'])){
+            $dao = new VotingDAOMySQL();
+            $points = $dao->getVotePoints($_GET['userid'], $_GET['storyid'], $_SESSION["userid"]);
+            if ($points != NULL){
+                echo $points;
+            }else{
+                http_response_code(500);
+            }
+        }else{
+            http_response_code(400);
+        }
     }
 
     

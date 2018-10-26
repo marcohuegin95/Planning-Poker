@@ -182,11 +182,54 @@ class VotingDAOMySQL implements VotingDAO{
         return $result;
     }
 
-    function getVote($voteId){
+    /**
+     * Läd die Punkte zu einer User Story.
+     * Die Punkte können nur geladen werden, falls der aktuelle Benutzer im
+     * Vote auch eingeladen wurde um zu vermeiden, dass Punkte zu fremden Abstimmungen geladen
+     * werden können
+     * @return Punkte NULL falls der gewüsnchte Nutzer noch nicht abgestimmt hat oder der aktuelle Benutzer nicht authoriziert ist
+     *                     die Punkte einzusehen 
+     * 
+     */
+    function getVotePoints($userId, $userStoryId, $currentUserId){
         $con = Connection::createConnection();
-        $stmt = $con->prepare("SELECT v.id, v.name, v.end FROM vote v INNER JOIN rel_vote_user rel_usr ON v.id = rel_usr.fk_vote WHERE v.id = :voteid");
-        $stmt->bindParam(':voteid', $vote_var);
+        $stmt = $con->prepare("SELECT points FROM rel_user_user_story rel INNER JOIN user_story story ON rel.fk_user_story = story.id
+                                                                          INNER JOIN rel_vote_user rel_user ON rel_user.fk_vote = story.fk_vote
+                                                                          WHERE story.id = :stroyid AND rel_user.fk_user = :currentUser AND rel.fk_user = :userId");
+        $stmt->bindParam(':stroyid', $story_var);
+        $stmt->bindParam(':currentUser', $current_user_var);
+        $stmt->bindParam(':userId', $user_var);
+        
         $vote_var = $voteId;
+        $current_user_var = $currentUser;
+        $user_var = $userId;
+        try{
+            $stmt->execute();
+            if($row = $stmt->fetch()) {
+                return $row['points'];
+             }
+    
+        }catch(Exception $e){
+            echo 'Exception abgefangen: ',  $e->getMessage(), "\n"; 
+
+        }
+        return NULL;        
+    }
+
+    /**
+     * Läd ein Vote zu einer Id. Das Vote kann nur geladen werden, falls der aktuelle Benutzer
+     * authorisiert ist, dieses auch zu sehen.
+     * @return Vote NULL falls der Nutzer nicht authorisiert ist oder das Vote nicht exsitiert
+     */
+    function getVote($currentUser, $voteId){
+        $con = Connection::createConnection();
+        $stmt = $con->prepare("SELECT v.id, v.name, v.end FROM vote v INNER JOIN rel_vote_user rel_usr ON v.id = rel_usr.fk_vote WHERE v.id = :voteid 
+                                                                                                                                 AND rel_usr.fk_user = :currentUser");
+        $stmt->bindParam(':voteid', $vote_var);
+        $stmt->bindParam(':currentUser', $user_var);
+        
+        $vote_var = $voteId;
+        $user_var = $currentUser;
         try{
             $stmt->execute();
             if($row = $stmt->fetch()) {

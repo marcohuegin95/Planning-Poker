@@ -60,4 +60,11 @@
         <filter>LoginFilter</filter>
     </route>
 
+    <route>
+        <url>/loadpoints</url>
+        <controller>PokerController</controller>
+        <action>loadPoints</action>
+        <filter>LoginFilter</filter>
+    </route>
+
 </routes>
