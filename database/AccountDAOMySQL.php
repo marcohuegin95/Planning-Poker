@@ -32,6 +32,12 @@ class AccountDAOMySQL implements AccountDAO{
         return false;
 
     }
+
+    /**
+     * Sucht einen user mit der E-Mail und dem Password des
+     * übergebenen Benutzers, falls dieser gefunden werden kann
+     * werden die Werte id und username ergänzt
+     */
     public function findAndFill($account){
         $con = Connection::createConnection();
 
@@ -52,6 +58,10 @@ class AccountDAOMySQL implements AccountDAO{
         return false;
     }
 
+    /**
+     * Läd alle Benutzer. Die Passwörter werden nicht geladen
+     * um die Liste auch sicher ans Frontend weitergeben zu können
+     */
     public function getAllUsers(){
         $con = Connection::createConnection();
         $result = [];
