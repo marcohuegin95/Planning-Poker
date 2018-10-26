@@ -1,6 +1,6 @@
 <?php 
 
-class UserStory{
+class UserStory implements JsonSerializable{
 
 
     private $id;
@@ -88,6 +88,12 @@ class UserStory{
         $this->title = $title;
 
         return $this;
+    }
+
+    
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }
 

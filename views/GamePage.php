@@ -1,5 +1,4 @@
 <?php
-require 'Page.php';
 
 /**
  * GamePage
@@ -8,7 +7,17 @@ require 'Page.php';
  */
 class GamePage implements Page{
 
+    private $vote;
+
+    function __construct($vote) {
+        $this->vote = $vote;
+    }
+
     public function render(){
-        include ("templates/game.html");
+        include ("templates/game.php");
+    }
+
+    function voteData(){
+        return json_encode($this->vote);
     }
 }

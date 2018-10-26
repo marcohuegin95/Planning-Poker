@@ -6,7 +6,7 @@
  * Simple User Object
  * Stores the points voted for a specific user story
  */
-class User{
+class User implements JsonSerializable{
 
     private $id;
 
@@ -121,6 +121,12 @@ class User{
         $this->email = $email;
 
         return $this;
+    }
+
+    
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }
 

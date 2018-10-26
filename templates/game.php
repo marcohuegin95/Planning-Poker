@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Planning Poker Game</title>
-    <link rel="stylesheet" href="css/bewertung.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="templates/css/bewertung.css">
+    <link rel="stylesheet" href="templates/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="templates/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -29,7 +29,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        timonmw@gmail.com
+                        <?php echo $_SESSION["email"] ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Settings</a>
@@ -79,7 +79,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Schätzung: <b id="projektname">Projektname</b>
+                            Schätzung: <b id="projektname"><?php echo $this->vote->getName() ?></b>
                         </h3>
                     </div>
                     <div class="card-body">
@@ -148,7 +148,7 @@
                                 <h3><b>Ende:</b></h3>
                             </div>
                             <div class="col-sm-8">
-                                <h3><span><b id="restzeitTage">1</b>d, <b id="restzeitStunden">5</b>h, <b id="restzeitMinuten">32</b>min</span></h3>
+                                <h3><?php echo $this->vote->getEnd()  ?></h3>
                             </div>
                         </div>
                         <div class="row">
@@ -228,10 +228,13 @@
         </div>
     </div>
     </div>
-    <script src="js/jquery/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/game.js"></script>
+    <script src="templates/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="templates/js/popper.min.js"></script>
+    <script src="templates/js/bootstrap/bootstrap.min.js"></script>
+    <script src="templates/js/game.js"></script>
+    <script>
+        currentVote = <?php echo $this->voteData() ?>;
+    </script>
 
 </body>
 

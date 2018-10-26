@@ -70,8 +70,8 @@ class Router
     * @param string $url 
     */
     private function getBasePathFromURL($url){
-        if (strpos($url, '&') != false){
-            $url = explode('&', $url, 2)[0];
+        if (strpos($url, '?') != false){
+            $url = explode('?', $url, 2)[0];
         }
         return $url;
     }

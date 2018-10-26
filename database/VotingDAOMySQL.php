@@ -130,6 +130,32 @@ class VotingDAOMySQL implements VotingDAO{
 
     }
 
+    function setVotePoints($userId, $userStoryId, $points){
+        $con = Connection::createConnection();
+        try{
+
+            $stmt = $con->prepare("INSERT INTO rel_user_user_story (fk_user, fk_user_story, points) 
+                                   VALUES (:fk_user, :fk_user_story, :points)
+                                   ON DUPLICATE KEY UPDATE
+                                   points= :points");
+            $stmt->bindParam(':fk_user', $user_var);
+            $stmt->bindParam(':fk_user_story', $user_story_var);
+            $stmt->bindParam(':points', $points_var);
+
+
+            $user_var = $userId;
+            $user_story_var = $userStoryId;
+            $points_var = $points;
+
+            return $stmt->execute();
+        }catch(Exception $e){
+            echo 'Exception abgefangen: ',  $e->getMessage(), "\n"; 
+        }
+ 
+        return false;
+
+    }
+
     function getVotings($byAccountId){
         $result = [];
         $con = Connection::createConnection();
@@ -154,6 +180,32 @@ class VotingDAOMySQL implements VotingDAO{
 
         }
         return $result;
+    }
+
+    function getVote($voteId){
+        $con = Connection::createConnection();
+        $stmt = $con->prepare("SELECT v.id, v.name, v.end FROM vote v INNER JOIN rel_vote_user rel_usr ON v.id = rel_usr.fk_vote WHERE v.id = :voteid");
+        $stmt->bindParam(':voteid', $vote_var);
+        $vote_var = $voteId;
+        try{
+            $stmt->execute();
+            if($row = $stmt->fetch()) {
+                $vote = new Vote();
+                $vote->setId($row['id']);
+                $vote->setName($row['name']);
+                $vote->setEnd($row['end']);
+                $vote->setUserStorys($this->getUserStorys($con, $row['id']));
+                $vote->setUsers($this->getUsers($con, $row['id']));
+                return $vote;
+
+             }
+    
+        }catch(Exception $e){
+            echo 'Exception abgefangen: ',  $e->getMessage(), "\n"; 
+
+        }
+        return NULL;
+        
     }
 }
 

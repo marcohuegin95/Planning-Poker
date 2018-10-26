@@ -1,7 +1,7 @@
 <?php 
 
 
-class Vote{
+class Vote implements JsonSerializable{
     
 
     private $id;
@@ -123,6 +123,12 @@ class Vote{
 
         return $this;
     }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+
 }
 
 

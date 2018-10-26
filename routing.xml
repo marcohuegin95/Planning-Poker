@@ -46,4 +46,18 @@
         <filter>LoginFilter</filter>
     </route>
 
+    <route>
+        <url>/savepoints</url>
+        <controller>PokerController</controller>
+        <action>saveVoteResultForCurrentUser</action>
+        <filter>LoginFilter</filter>
+    </route>
+
+    <route>
+        <url>/game</url>
+        <controller>PokerController</controller>
+        <action>gamePage</action>
+        <filter>LoginFilter</filter>
+    </route>
+
 </routes>
