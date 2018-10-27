@@ -55,11 +55,11 @@ $(document).ready(function () {
 */
 function checkUserStoryID(aktuellerUserStoryCount) {
     var userStoryLength = currentVote.user_storys.length
-    if (aktuellerUserStoryCount>=userStoryLength){
-        currentUserStoryCounter=0;
+    if (aktuellerUserStoryCount >= userStoryLength) {
+        currentUserStoryCounter = 0;
         console.log("User-Story zu hoch, bei erster anfangen")
-    } else if(aktuellerUserStoryCount <0){
-        currentUserStoryCounter=userStoryLength-1;
+    } else if (aktuellerUserStoryCount < 0) {
+        currentUserStoryCounter = userStoryLength - 1;
         console.log("User-Story zu niedrig, bei der letzten anfangen")
     }
 }
@@ -90,7 +90,7 @@ $(document).ready(function () {
 /**
   * @desc Routine, welche Button-Value an Ajax weiterreicht und dort verarbeitet (Wert an DB senden)
 */
-function setValueFromVoteButtonToAjax(buttonValue) {
+function setValueFromVoteButtonToAjax(buttonValue, id) {
     // Ajax-Aufruf
     $.ajax({
         type: 'POST',
@@ -101,9 +101,12 @@ function setValueFromVoteButtonToAjax(buttonValue) {
         }
     })
 
+
         // Wenn Vorgang erfolgreich ...
         .done(function (data) {
             console.log("POST an DB erfolgreich");
+            setColorVoteButton(id);
+
         })
         // Wenn Vorgang nicht erfolgreich
         .fail(function () {
@@ -111,6 +114,20 @@ function setValueFromVoteButtonToAjax(buttonValue) {
             console.log("POST zu DB nicht erfolgreich");
         });
 
+
+
     // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
     return false;
+}
+
+function setColorVoteButton(id) {
+    // Bei erfolgreicher Daten-Übermittlung Button umfärben
+    $("#buttonAbschaetzung button").each(function () {
+        $(this).removeClass("btn btn-info").addClass("btn btn-primary");
+    });
+    $(id).removeClass("btn btn-primary").addClass("btn btn-info");
+}
+
+function setUserStoryPoints() {
+
 }

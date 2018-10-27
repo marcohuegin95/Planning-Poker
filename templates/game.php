@@ -83,42 +83,44 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-primary" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <div id="buttonAbschaetzung">
+                        <button class="btn btn-primary" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value, button_Null)">
                             <div class="numberCircle">0</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_EinHalb" value="0,5" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_EinHalb" value="0,5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
                             <div class="numberCircleWithComma">0,5</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value, button_Eins)">
                             <div class="numberCircle">1</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Zwei" value="2" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Zwei" value="2" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwei)">
                             <div class="numberCircle">2</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Drei" value="3" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Drei" value="3" onclick="setValueFromVoteButtonToAjax(this.value, button_Drei)">
                             <div class="numberCircle">3</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Fuenf" value="5" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Fuenf" value="5" onclick="setValueFromVoteButtonToAjax(this.value, button_Fuenf)">
                             <div class="numberCircle">5</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Acht" value="8" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Acht" value="8" onclick="setValueFromVoteButtonToAjax(this.value, button_Acht)">
                             <div class="numberCircle">8</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Dreizehn" value="13" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Dreizehn" value="13" onclick="setValueFromVoteButtonToAjax(this.value, button_Dreizehn)">
                             <div class="numberCircle">13</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Zwanzig" value="20" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Zwanzig" value="20" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwanzig)">
                             <div class="numberCircle">20</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Vierzig" value="40" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Vierzig" value="40" onclick="setValueFromVoteButtonToAjax(this.value, button_Vierzig)">
                             <div class="numberCircle">40</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="buttin_Hundert" value="100" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Hundert" value="100" onclick="setValueFromVoteButtonToAjax(this.value, button_Hundert)">
                             <div class="numberCircleHundert">100</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value)">
+                        <button class="btn btn-primary" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value, button_Fragezeichen)">
                             <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
                         </button>
+                        </div>
                     </div>
                     <div class="col-*-*">
                         <div class="row top-buffer"></div>
@@ -141,7 +143,7 @@
                                 <h3><b>Ende:</b></h3>
                             </div>
                             <div class="col-sm-8">
-                                <h3><?php echo $this->vote->getEnd()  ?></h3>
+                                <h3><?php echo $this->vote->getEnd() ?></h3>
                             </div>
                         </div>
                         <div class="row">
