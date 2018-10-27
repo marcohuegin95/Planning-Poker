@@ -1,13 +1,13 @@
 <?php 
 
 require 'Connection.php';
-require 'AccountDAO.php';
+require 'UserDAO.php';
 /**
- * AccountDAOMySQL
+ * UserDAOMySQL
  *
  * Verwaltet die Datenbank zugriffe für user
  */
-class AccountDAOMySQL implements AccountDAO{
+class UserDAOMySQL implements UserDAO{
 
 
     /**
