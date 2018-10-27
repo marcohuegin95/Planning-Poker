@@ -1,7 +1,7 @@
 <?php
 
 require 'database/VotingDAOMySQL.php';
-require 'database/AccountDAOMySQL.php';
+require 'database/UserDAOMySQL.php';
 require 'model/UserStory.php';
 require 'views/DashboardPage.php';
 require 'views/NewGamePage.php';
@@ -54,7 +54,7 @@ class PokerController{
     }
 
     public function newGamePage(){
-        $accDao = new AccountDAOMySQL();
+        $accDao = new UserDAOMySQL();
         $users = $accDao->getAllUsers();
 
         $page = new NewGamePage($users);
@@ -108,7 +108,7 @@ class PokerController{
             $vote->setUserStorys($storys);
 
             //users auslesen
-            $accDao = new AccountDAOMySQL();
+            $accDao = new UserDAOMySQL();
             $users = [];
             foreach($_POST['users'] as $userid){
                 $users[] = $accDao->getUserById($userid);

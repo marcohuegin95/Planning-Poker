@@ -1,7 +1,7 @@
 <?php
 
 require 'views/LoginPage.php';
-require 'database/AccountDAOMySQL.php';
+require 'database/UserDAOMySQL.php';
 require 'model/User.php';
 
 /**
@@ -28,7 +28,7 @@ class UserController{
         $page = new LoginPage();
         $account = $this->createAccountFromParams(true);
         if ($account != NULL){
-            $dao = new AccountDAOMySQL();
+            $dao = new UserDAOMySQL();
             if ($dao->findAndFill($account)){
                 $_SESSION["userid"] = $account->getId();
                 $_SESSION["username"] = $account->getUsername();
@@ -66,7 +66,7 @@ class UserController{
         
         $account = $this->createAccountFromParams(false);
         if ($account != NULL){
-            $dao = new AccountDAOMySQL();
+            $dao = new UserDAOMySQL();
             if ($account->validate()){
                 if ($dao->register($account)){
                     $page->setMessage('Erfolgreich registriert');

@@ -1,10 +1,10 @@
 <?php 
 
 /**
- * AccountDAO
+ * UserDAO
  * @author Timon Müller-Wessling
  */
-interface AccountDAO{
+interface UserDAO{
     function register($account);
     function findAndFill($account);
     function getAllUsers();
