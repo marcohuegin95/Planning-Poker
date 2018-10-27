@@ -34,7 +34,7 @@ class PokerController{
             $page->setMessage($msg);
         }
         if ($err != NULL && !empty($err)){
-            $page->setError($msg);
+            $page->setError($err);
         }
         $page->render();
         
@@ -45,14 +45,13 @@ class PokerController{
      */
     public function gamePage(){
         if (isset($_GET['id'])){
-            print($_GET['id']);
             $dao = new VotingDAOMySQL();
             $vote = $dao->getVote($_SESSION['userid'], $_GET['id']);
             if($vote != null){
                 $page = new GamePage($vote);
                 $page->render();
             }else{
-                $this->showDashboard(null, 'Fehler beim Laden');    
+                $this->showDashboard(null, 'Datensatz kann zum aktuellen Nutzer nicht geladen werden');    
             }
         }else{
             $this->showDashboard(null, 'Fehlerhafter Aufruf');
