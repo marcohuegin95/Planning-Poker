@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard">Planning Poker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -40,28 +40,18 @@
             </ul>
         </div>
     </nav>
-    <div class="jumbotron">
+    <div class="container mt-5">
     <?php   echo $this->err;
-                            echo $this->message;  
-                            ?>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
+            echo $this->message;  
+    ?>
+
         <div class="text-center">
             <h1>Dashboard von <b><span id="aktuellerBenutzername"><?php echo $_SESSION["username"] ?></span></b></h1>
         </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
+
         <div class="row">
             <!--div class="col-sm-1"></div-->
-            <div class="col-sm-6">
+            <div class="col-sm-6 pt-3">
                 <div class="card">
                     <div class="card-header">
                         <h3>Einladungen</h3>
@@ -81,7 +71,7 @@
                 </div>
             </div>
             <!--div class="col-sm-2"></div-->
-            <div class="col-sm-6">
+            <div class="col-sm-6 pt-3">
                 <div class="card">
                     <div class="card-header">
                         <h3>Vergangene Spiele</h3>
@@ -89,7 +79,6 @@
                     <?php echo $this->displayOldGames(); ?>
                 </div>
                 <div class="card">
-                    <div class="card-header">
                         <div class="text-center">
                             <a href="#">
                                 <i class="fa fa-cog" style="font-size:50px;color:royalblue"></i>
@@ -98,7 +87,6 @@
                                 </h4>
                             </a>
                         </div>
-                    </div>
                 </div>
             </div>
             <!--div class="col-sm-1"></div-->

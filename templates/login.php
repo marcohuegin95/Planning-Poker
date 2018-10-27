@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,16 +10,12 @@
     <link rel="stylesheet" href="/templates/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="/templates/css/index.css">
 </head>
-<body>
-    <div class="jumbotron">
 
-    <div class="text-center">
-        <h1>Wilkommen zum Planning Poker!</h1>
-    </div>
-    <div class="col-*-*">
-            <div class="row top-buffer"></div>
-    </div>
+<body>
     <div class="container">
+        <div class="text-center">
+            <h1>Wilkommen zum Planning Poker!</h1>
+        </div>
         <div id="loginFrame" class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -35,7 +32,7 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                    <?php   echo $this->err;
+                        <?php   echo $this->err;
                             echo $this->message;  
                             ?>
                         <div class="tab-content">
@@ -43,31 +40,34 @@
                                 <form action="/Login" method="post">
                                     <div class="form-group">
                                         <label for="inputEmail">E-Mail</label>
-                                        <input name="email" type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp"
-                                            placeholder="E-Mail eingeben" required>
+                                        <input name="email" type="email" class="form-control" id="loginEmail"
+                                            aria-describedby="emailHelp" placeholder="E-Mail eingeben" >
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword">Passwort</label>
-                                        <input name="password" type="password" class="form-control" id="loginPassword" placeholder="Passwort" required>
+                                        <input name="password" type="password" class="form-control" id="loginPassword"
+                                            placeholder="Passwort" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </form>
                             </div>
 
                             <div id="register" class="tab-pane">
-                                <form action="/Register" method="post">                             
+                                <form action="/Register" method="post">
                                     <div class="form-group">
                                         <label for="inputUser">Username</label>
-                                        <input name="username" type="test" class="form-control" id="registertUser" placeholder="Username eingeben" required>
+                                        <input name="username" type="test" class="form-control" id="registertUser"
+                                            placeholder="Username eingeben" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail">E-Mail Adresse</label>
-                                        <input name="email" type="email" class="form-control" id="registerEmail" aria-describedby="emailHelp"
-                                            placeholder="E-Mail eingeben" required>
+                                        <input name="email" type="email" class="form-control" id="registerEmail"
+                                            aria-describedby="emailHelp" placeholder="E-Mail eingeben" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword">Passwort</label>
-                                        <input name="password" type="password" class="form-control" id="registerPassword" placeholder="Passwort eingeben" required>
+                                        <input name="password" type="password" class="form-control" id="registerPassword"
+                                            placeholder="Passwort eingeben" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Register</button>
                                 </form>
@@ -78,7 +78,6 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-    </div>
     </div>
     <script src="/templates/js/jquery/jquery-3.3.1.min.js"></script>
     <script src="/templates/js/popper.min.js"></script>

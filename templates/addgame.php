@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard">Planning Poker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -38,99 +38,95 @@
             </ol>
         </div>
     </nav>
-    <div class="jumbotron">
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
+    <div class="container mt-5">
         <div class="text-center">
             <h1>Neues Spiel erstellen</h1>
         </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
         <form method="post" action="/savenewgame">
             <div class="row justify-center">
-                <div class="col-8">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <h4><label>Titel <font color="red"><label id="warnungTitel"></label></font></label></h4>
                         <input id="in_titelNeuesProjekt" name="game_name" type="text" class="form-control" id="titelNeuesSpiel"
-                            placeholder="Titel eingeben">
+                            placeholder="Titel eingeben" required>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h4><label>Enddatum </label></h4>
+                    <div class="input-group">
+                        <div class="form-group" style="width: 100%">
+                            <input class="form-control" style="width: 100%" type="date" id="enddatum" name="enddatum"
+                                min="2018-01-01" required />
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <h4><label>Teilnehmer <font color="red"><label id="warnungTeilnehmerHinzufuegen"></label></font></label></h4>
+
                     <div class="input-group mb-3">
-                        <div class="form-group">
-                            <select id="in_teilnehmer" name="users[]" class="form-control" multiple>
-                                <option value="" disabled>Bitte Teilnehmer wählen</option>
-                                <?php echo $this->displayUserList() ?>
-                            </select>
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Verfügbare Teilnehmer</label>
                         </div>
+                        <select class="custom-select" id="in_teilnehmer" name="users[]" required>
+                            <?php echo $this->displayUserList() ?>
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="col-12">
+                    <ul class="list-group">
+                    </ul>
+                    <div class="col-*-*">
+                        <div class="row top-buffer"></div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <h4><label>Enddatum </label></h4>
-                    <div class="input-group mb-3">
-                        <div class="form-group">
-                            <input type="date" id="enddatum" name="enddatum" min="2018-01-01"/>
-                        </div>
-                    </div>
-                </div>
-            <div class="col-12">
-                <ul class="list-group">
-                </ul>
-                <div class="col-*-*">
-                    <div class="row top-buffer"></div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <h4><label>User-Story hinzufügen <font color="red"><label id="warnungUserStoryHinzufuegen"></label></font></label></h4></label></h4>
+                    <div class="form-group">
+                        <h4><label>User-Story hinzufügen <font color="red"><label id="warnungUserStoryHinzufuegen"></label></font></label></h4></label></h4>
 
-                    <div class="row clearfix">
-                        <div class="col-md-12 table-responsive">
-                            <table class="table table-bordered table-hover table-sortable" id="tab_logic">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            Titel
-                                        </th>
-                                        <th class="text-center">
-                                            Beschreibung
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr id='addr0' data-id="0">
-                                        <td data-name="story_names">
-                                            <input type="text" id="in_storyTitel" placeholder='Story-Titel eingeben' name="story_names[]" class="form-control" />
-                                        </td>
-                                        <td data-name="story_descriptions">
-                                            <input type="text" id="in_storyBeschreibung" placeholder='Beschreibung eingeben' name="story_descriptions[]" class="form-control" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="row clearfix">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table table-bordered table-hover table-sortable" id="tab_logic">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                Titel
+                                            </th>
+                                            <th class="text-center">
+                                                Beschreibung
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr0' data-id="0">
+                                            <td data-name="story_names">
+                                                <input type="text" id="in_storyTitel" placeholder='Story-Titel eingeben'
+                                                    name="story_names[]" class="form-control" required/>
+                                            </td>
+                                            <td data-name="story_descriptions">
+                                                <input type="text" id="in_storyBeschreibung" placeholder='Beschreibung eingeben'
+                                                    name="story_descriptions[]" class="form-control" required/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                        <button type="button" id="btn_storyHinzufuegen" class="btn btn-primary">User-Story hinzufügen</button>
                     </div>
-                    <a id="btn_storyHinzufuegen" class="btn btn-primary">User-Story hinzufügen</a>
+                </div>
+                <div class="col-12">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-save" style="font-size:36px"></i>
+                            Speichern</button>
+                        <a href="/dashboard" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
+                            Abbrechen</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="text-center">
-                <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-save" style="font-size:36px"></i> Speichern</button>
-                    <a href="/dashboard" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
-                        Abbrechen</a>
-                </div>
-            </div>
-    </div>
-    </form>
+        </form>
     </div>
     <script src="templates/js/jquery/jquery-3.3.1.min.js"></script>
     <script src="templates/js/popper.min.js"></script>

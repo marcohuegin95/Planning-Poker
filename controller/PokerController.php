@@ -29,7 +29,7 @@ class PokerController{
         if ($msg != NULL && !empty($msg)){
             $page->setMessage($msg);
         }
-        if ($err != NULL && !empty($er)){
+        if ($err != NULL && !empty($err)){
             $page->setError($msg);
         }
         $page->render();
