@@ -11,12 +11,14 @@
         <url>/register</url>
         <controller>LoginController</controller>
         <action>register</action>
+        <filter>InputFilter</filter>
     </route>
   
     <route>
         <url>/login</url>
         <controller>LoginController</controller>
         <action>login</action>
+        <filter>InputFilter</filter>
     </route>
 
     <route>
@@ -40,10 +42,11 @@
     </route>
 
     <route>
-        <url>/newgame/add</url>
+        <url>/savenewgame</url>
         <controller>PokerController</controller>
         <action>saveGame</action>
         <filter>LoginFilter</filter>
+        <filter>InputFilter</filter>
     </route>
 
     <route>

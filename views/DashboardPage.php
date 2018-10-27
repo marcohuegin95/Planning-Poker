@@ -1,12 +1,13 @@
 <?php
 require 'Page.php';
+require 'MessagePage.php';
 
 /**
  * DashboardPage
  *
  * Dashboard Page which renders the Dashboard Site
  */
-class DashboardPage implements Page{
+class DashboardPage extends MessagePage implements Page{
 
 
     private $invites = [];

@@ -1,11 +1,11 @@
 <?php 
 
-require 'Filter.php';
-
 /**
- * Filter
+ * LoginFilter
  *
- * Filters Users that are not logged in
+ * Prüft ob ein Nutzer angenmeldet ist. Falls nicht wird
+ * zum index umgeleitet.
+ * @author Timon Müller-Wessling
  */
 class LoginFilter implements Filter{
     

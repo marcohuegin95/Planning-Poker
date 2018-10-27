@@ -5,7 +5,7 @@
  *
  * New Game Page which renders the Game Site
  */
-class NewGamePage implements Page{
+class NewGamePage extends MessagePage implements Page{
 
     private $users;
 

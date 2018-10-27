@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Planning Poker</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard">Planning Poker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
         <div class="col-*-*">
             <div class="row top-buffer"></div>
         </div>
-        <form method="post" action="/newgame/add">
+        <form method="post" action="/savenewgame">
             <div class="row justify-center">
                 <div class="col-8">
                     <div class="form-group">

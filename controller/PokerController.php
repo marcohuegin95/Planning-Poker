@@ -18,21 +18,37 @@ class PokerController{
     * Displays the login dialoge 
     */
     public function index(){
+        $this->showDashboard(null, null);
+    }
+
+    private function showDashboard($msg, $err){
         $dao = new VotingDAOMySQL();
         $votes = $dao->getVotings($_SESSION["userid"]);  
         
         $page = new DashboardPage($votes);
+        if ($msg != NULL && !empty($msg)){
+            $page->setMessage($msg);
+        }
+        if ($err != NULL && !empty($er)){
+            $page->setError($msg);
+        }
         $page->render();
+        
     }
 
     public function gamePage(){
-        
         if (isset($_GET['id'])){
             print($_GET['id']);
             $dao = new VotingDAOMySQL();
             $vote = $dao->getVote($_SESSION['userid'], $_GET['id']);
-            $page = new GamePage($vote);
-            $page->render();         
+            if($vote != null){
+                $page = new GamePage($vote);
+                $page->render();
+            }else{
+                $this->showDashboard(null, 'Fehler beim Laden');    
+            }
+        }else{
+            $this->showDashboard(null, 'Fehlerhafter Aufruf');
         }
         
     }
@@ -49,11 +65,13 @@ class PokerController{
         $vote = $this->createVoteFromParams();
         if ($vote != NULL){
             $voteDao = new VotingDAOMySQL();
-            $voteDao->insert($vote);
-            echo "hat geklappt";
-            die();
+            if ($voteDao->insert($vote)){
+                $this->showDashboard($vote->getName().' erfolgreich gespeichert', null);
+            }else{
+                $this->showDashboard(null, 'Fehler beim Speichern');
+            }
         }else{
-            echo 'Spiel konnte nicht erfolgreich gespeichert werden';
+            $this->showDashboard(null, 'Fehlerhafter Aufruf beim Speichern');
         }
     }
 

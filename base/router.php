@@ -1,13 +1,21 @@
 <?php
 
+require 'filters/Filter.php';
+
 /**
  * Route
  *
- * Objekt to associate an URL with an specific controller method 
+ * Übernimmt das weiterleiten einer Anfrage an die dafür
+ * verantwortliche Schnittstelle. Zusätzlich werden, die für die Anfrage
+ * angegebenen Filter aufgerufen
+ * @author Timon Mueller-Wessling
  */
 class Router
 {
 
+    /**
+     * Läd die gegebene Klasse aus dem im präfix angebenen Ordner
+     */
     private function autoload ($prefix, $className) { 
         $class = $prefix . '/' . $className. '.php';
          if (file_exists($class)) {
@@ -16,8 +24,9 @@ class Router
     } 
 
     /**
-    * searches for the given URL in the routing.xml for the matchign action
-    * @return route a route object if an action was found, NULL if not
+    * Sucht die übergenen URL in der routing.xml und gibt falls ein Eintrag gefunden
+    * werden kann, den Eintrag der xml Datei zurück
+    * @return route den Eintrag der XML, der Informationen zum Controller, Filter usw. enthält
     */
     private function findRouteByURL($url){
         $routes = simplexml_load_file("routing.xml");
@@ -34,23 +43,37 @@ class Router
     }
 
     /**
-    * calls the action associate with the URL
-    * @param string $url 
+     * Versucht den übergebenen Filter zu finden
+     * und die Filterfunktion von diesem aufzurufen
+     */
+    private function callFilter($filter){
+        $this->autoload('filters', $filter);
+        $filter_class = (string) $filter;
+
+        $filter = new $filter_class();
+        if ($filter instanceof Filter){
+            $filter->filter();
+        }
+    }
+
+    /**
+    * Vermittelt die übergeben URL an die dafür
+    * verantwortliche Schnittstelle bzw. Kontroller.
+    * Zusätzlich werden Filter für den gebenen Kontroller aufgerufen
     */
     public function dispatch($url){
         $base_url = $this->getBasePathFromURL($url);
         $route = $this->findRouteByURL($base_url);
+        print_r($route);
         if ($route != NULL){
-            //is there a filter?
             if ($route->filter){
-                $this->autoload('filters', $route->filter);
-                $filter_class = (string) $route->filter;
-
-                $filter = new $filter_class();
-                if ($filter instanceof Filter){
-                    $filter->filter();
+                if(is_array($route->filter)){
+                    foreach($route->filter as $filter){
+                        $this->callFilter($filter);    
+                    }
+                }else{
+                    $this->callFilter($route->filter);
                 }
-                    
             }
             $this->autoload('controller' , $route->controller);
             $controller_class = (string) $route->controller;
@@ -59,15 +82,14 @@ class Router
             $controller = new $controller_class();
             $controller->{$controller_action}();
         }else{
-            //TODO
-
+            echo '404 Seite nicht gefunden';
         }
         
     }
 
     /**
-    * Removes all the Parameters from the url
-    * @param string $url 
+    * Entfernt alle Paramter von der mitgebenen url
+    * @return url die URL ohne alle Parameter die nach dem ersten '?' kommen 
     */
     private function getBasePathFromURL($url){
         if (strpos($url, '?') != false){
