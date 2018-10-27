@@ -3,27 +3,27 @@
 
     <route>
         <url>/</url>
-        <controller>LoginController</controller>
+        <controller>UserController</controller>
         <action>index</action>
     </route>
 
     <route>
         <url>/register</url>
-        <controller>LoginController</controller>
+        <controller>UserController</controller>
         <action>register</action>
         <filter>InputFilter</filter>
     </route>
   
     <route>
         <url>/login</url>
-        <controller>LoginController</controller>
+        <controller>UserController</controller>
         <action>login</action>
         <filter>InputFilter</filter>
     </route>
 
     <route>
         <url>/logout</url>
-        <controller>LoginController</controller>
+        <controller>UserController</controller>
         <action>logout</action>
     </route>
 

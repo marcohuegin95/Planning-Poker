@@ -5,11 +5,12 @@ require 'database/AccountDAOMySQL.php';
 require 'model/User.php';
 
 /**
- * Route
+ * LoginController
  *
- * Handels all the register and login events 
+ * Verwaltet alle Nutzerbezogenen Aktionen 
+ * @author Timon Müller-Wessling
  */
-class LoginController{
+class UserController{
 
     /**
     * Displays the login dialoge 
