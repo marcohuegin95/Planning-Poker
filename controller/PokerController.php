@@ -8,9 +8,9 @@ require 'views/NewGamePage.php';
 require 'views/GamePage.php';
 
 /**
- * Route
+ * PokerController
  *
- * Handels all the register and login events 
+ * Kontroller für alle Spielrelevanten funktionen 
  */
 class PokerController{
 
@@ -21,6 +21,10 @@ class PokerController{
         $this->showDashboard(null, null);
     }
 
+    /**
+     * Zeigt das Dashbaord an
+     * Optinal können Meldungen mitgegeben werden
+     */
     private function showDashboard($msg, $err){
         $dao = new VotingDAOMySQL();
         $votes = $dao->getVotings($_SESSION["userid"]);  
@@ -36,6 +40,9 @@ class PokerController{
         
     }
 
+    /**
+     * Zeigt die Spieleseite zu einer übergebenen id an
+     */
     public function gamePage(){
         if (isset($_GET['id'])){
             print($_GET['id']);
@@ -53,6 +60,9 @@ class PokerController{
         
     }
 
+    /**
+     * Zeigt die seite für die Erstellung einer neuen Abstimmung an
+     */
     public function newGamePage(){
         $accDao = new UserDAOMySQL();
         $users = $accDao->getAllUsers();
@@ -61,6 +71,10 @@ class PokerController{
         $page->render();
     }
 
+     /**
+     * Versucht eine Abstimmung aus den POST parametern zu laden 
+     * und zu speichern
+     */
     public function saveGame(){
         $vote = $this->createVoteFromParams();
         if ($vote != NULL){
@@ -75,6 +89,10 @@ class PokerController{
         }
     }
 
+    /**
+     * Speichert die abgestimmten Punkte für den momentan angemeldeten Benutzer.
+     * 
+     */
     public function saveVoteResultForCurrentUser(){
         if (isset($_POST['points']) && isset($_POST['user_story'])){
             $voteDao = new VotingDAOMySQL();
@@ -89,6 +107,9 @@ class PokerController{
         }
     }
 
+    /**
+     * Versucht anhand der POST Paramtern ein Vote Objekt zu erstellen
+     */
     private function createVoteFromParams(){
         if(isset($_POST['game_name']) && isset($_POST['users']) && isset($_POST['story_names']) && isset($_POST['story_descriptions']) && isset($_POST['enddatum'])){
             $vote = new Vote();
@@ -119,6 +140,9 @@ class PokerController{
         return NULL;
     }
 
+    /**
+     * Lädt die abgestimmten Punkte für bestimmte Benutzer
+     */
     public function loadPoints(){
         if (isset($_GET['userid']) && isset($_GET['storyid'])){
             $dao = new VotingDAOMySQL();
