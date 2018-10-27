@@ -1,4 +1,3 @@
-
 /**
  * Objekt in welchem alle Daten zum aktuellen Vote enthalten sind
  * Wird vom backend beim laden der seite befüllt
@@ -101,7 +100,6 @@ function setValueFromVoteButtonToAjax(buttonValue, id) {
         }
     })
 
-
         // Wenn Vorgang erfolgreich ...
         .done(function (data) {
             console.log("POST an DB erfolgreich");
@@ -110,24 +108,65 @@ function setValueFromVoteButtonToAjax(buttonValue, id) {
         })
         // Wenn Vorgang nicht erfolgreich
         .fail(function () {
-            // Konsolenausgabe
             console.log("POST zu DB nicht erfolgreich");
         });
-
-
 
     // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
     return false;
 }
 
+function loadVotePoints(){
+    // Ajax-Aufruf
+    $.ajax({
+        type: 'GET',
+        url: '/loadpoints',
+        data: {
+            userid: userid, // TODO ferig machen
+            storyid: currentUserStoryID
+        },
+        success: function(data) {
+            return data;
+        }
+    })
+
+        // Wenn Vorgang erfolgreich ...
+        .done(function (data) {
+            console.log("loadVotePoints: GET an DB erfolgreich");
+            console.log(data);
+            setColorVoteButton(id);
+
+        })
+        // Wenn Vorgang nicht erfolgreich
+        .fail(function () {
+            console.log("loadVotePoints: GET zu DB nicht erfolgreich");
+        });
+
+    // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
+    return false; 
+}
+
+
 function setColorVoteButton(id) {
-    // Bei erfolgreicher Daten-Übermittlung Button umfärben
     $("#buttonAbschaetzung button").each(function () {
         $(this).removeClass("btn btn-info").addClass("btn btn-primary");
     });
     $(id).removeClass("btn btn-primary").addClass("btn btn-info");
 }
 
-function setUserStoryPoints() {
+function deleteColorAllVoteButtons() {
+    $("#buttonAbschaetzung button").each(function () {
+        $(this).removeClass("btn btn-info").addClass("btn btn-primary");
+    });
+}
+
+// TODO: Prüfen, brauchen wir das?
+//$(window).on('load', function () {
+//    deleteColorAllVoteButtons();
+//});
+
+function setUserStoryPoints() { // TODO fertig machen
+    // 1. Direkt bei Abgabe der Stimme
+    // 2. Wenn der Nutzer wieder auf die Seite geht
+
 
 }
