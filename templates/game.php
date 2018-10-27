@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard">Planning Poker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -40,16 +40,11 @@
             </ul>
         </div>
     </nav>
-    <div class="jumbotron">
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
+    <div class="container-fluid mt-3">
+
         <div class="row">
             <div class="col-sm-4">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         <h3>
                             User-Story <b>[<span id="aktuelleUserStoryNr">1</span>/<span id="anzahlStorys">10</span>]</b>
@@ -66,17 +61,13 @@
                         </br>
                         <p class="card-text" id="aktuelleUserStoryBeschreibung">Lorem ipsum dolor sit amet, consetetur
                             sadipscing elitr, sed diam nonumy
-                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                            eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                            diam voluptua.<br>
+                            <br>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         <h3>
                             Schätzung: <b id="projektname"><?php echo $this->vote->getName() ?></b>
@@ -84,56 +75,52 @@
                     </div>
                     <div class="card-body">
                         <div id="buttonAbschaetzung">
-                        <button class="btn btn-primary" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value, button_Null)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value, button_Null)">
                             <div class="numberCircle">0</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_EinHalb" value="0,5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
+                        <button class="btn btn-primary m-1 p-1" id="button_EinHalb" value="0,5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
                             <div class="numberCircleWithComma">0,5</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value, button_Eins)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value, button_Eins)">
                             <div class="numberCircle">1</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Zwei" value="2" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwei)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Zwei" value="2" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwei)">
                             <div class="numberCircle">2</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Drei" value="3" onclick="setValueFromVoteButtonToAjax(this.value, button_Drei)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Drei" value="3" onclick="setValueFromVoteButtonToAjax(this.value, button_Drei)">
                             <div class="numberCircle">3</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Fuenf" value="5" onclick="setValueFromVoteButtonToAjax(this.value, button_Fuenf)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Fuenf" value="5" onclick="setValueFromVoteButtonToAjax(this.value, button_Fuenf)">
                             <div class="numberCircle">5</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Acht" value="8" onclick="setValueFromVoteButtonToAjax(this.value, button_Acht)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Acht" value="8" onclick="setValueFromVoteButtonToAjax(this.value, button_Acht)">
                             <div class="numberCircle">8</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Dreizehn" value="13" onclick="setValueFromVoteButtonToAjax(this.value, button_Dreizehn)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Dreizehn" value="13" onclick="setValueFromVoteButtonToAjax(this.value, button_Dreizehn)">
                             <div class="numberCircle">13</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Zwanzig" value="20" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwanzig)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Zwanzig" value="20" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwanzig)">
                             <div class="numberCircle">20</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Vierzig" value="40" onclick="setValueFromVoteButtonToAjax(this.value, button_Vierzig)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Vierzig" value="40" onclick="setValueFromVoteButtonToAjax(this.value, button_Vierzig)">
                             <div class="numberCircle">40</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Hundert" value="100" onclick="setValueFromVoteButtonToAjax(this.value, button_Hundert)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Hundert" value="100" onclick="setValueFromVoteButtonToAjax(this.value, button_Hundert)">
                             <div class="numberCircleHundert">100</div></br>SP
                         </button>
-                        <button class="btn btn-primary" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value, button_Fragezeichen)">
+                        <button class="btn btn-primary m-1 p-1" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value, button_Fragezeichen)">
                             <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
                         </button>
                         </div>
                     </div>
-                    <div class="col-*-*">
-                        <div class="row top-buffer"></div>
-                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="col-*-*">
-            <div class="row top-buffer"></div>
-        </div>
+
         <div class="row">
             <div class="col-sm-4">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         <h3>Statistik</h3>
                     </div>
@@ -187,7 +174,7 @@
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         <h3>Ergebnisse</h3>
                     </div>
