@@ -5,10 +5,14 @@ require 'AccountDAO.php';
 /**
  * AccountDAOMySQL
  *
- * Object to implement basic account database operations
+ * Verwaltet die Datenbank zugriffe für user
  */
 class AccountDAOMySQL implements AccountDAO{
 
+
+    /**
+     * Versucht den übergebenen Nutzer zu Speichern
+     */
     public function register($account){
         if ($account->validate()){
             $con = Connection::createConnection();
@@ -25,9 +29,9 @@ class AccountDAOMySQL implements AccountDAO{
                 $stmt->execute(); 
                 return true;
             }catch(Exception $e){
+                error_log("Interner Fehler ". $e->getMessage(), 0);
                 return false; 
-            }
-               
+            }   
         }
         return false;
 
@@ -52,9 +56,9 @@ class AccountDAOMySQL implements AccountDAO{
                 }
             }
         }catch(Exception $e){
+            error_log("Interner Fehler ". $e->getMessage(), 0);
             return false;
-        }
-            
+        }  
         return false;
     }
 
@@ -76,7 +80,7 @@ class AccountDAOMySQL implements AccountDAO{
              }
 
         }catch(Exception $e){
-            //TODO
+            error_log("Interner Fehler ". $e->getMessage(), 0);
         }        
         return $result;
 
@@ -98,7 +102,7 @@ class AccountDAOMySQL implements AccountDAO{
                 }
             }
         }catch(Exception $e){
-            //TODO
+            error_log("Interner Fehler ". $e->getMessage(), 0);
         }
             
         return NULL;        

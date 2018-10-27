@@ -64,7 +64,6 @@ class Router
     public function dispatch($url){
         $base_url = $this->getBasePathFromURL($url);
         $route = $this->findRouteByURL($base_url);
-        print_r($route);
         if ($route != NULL){
             if ($route->filter){
                 if(is_array($route->filter)){

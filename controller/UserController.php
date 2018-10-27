@@ -13,7 +13,7 @@ require 'model/User.php';
 class UserController{
 
     /**
-    * Displays the login dialoge 
+    * Zeigt die Normale Login Seite 
     */
     public function index(){
         $page = new LoginPage();
@@ -21,8 +21,8 @@ class UserController{
     }
 
     /**
-    * trys to find an account given in the post parameters and to 
-    * find a search query in the database for the given user 
+    * Versucht anhand der übergebenen Paramtern einen Nutzer Account
+    * zu Speichern. Falls die Eingaben korrekt sind wird zum Dashboard weitergeleitet 
     */
     public function login(){
         $page = new LoginPage();
@@ -58,8 +58,8 @@ class UserController{
     }
 
     /**
-    * Registers the given Account in the Database or shows an error if the account
-    * is invalid 
+    * Versucht anhand der übergebenen Paramtern einen Nutzer Account
+    * zu Registrieren
     */
     public function register(){
         $page = new LoginPage();
@@ -84,8 +84,8 @@ class UserController{
     }
 
     /**
-    * Trys to create an account from the given POST params
-    * @return Account the given account or NULL if no matching entrys could be found in the POST array 
+    * Versucht ein User Objekt anhand der POST Paramter zu erstellen
+    * @return User Falls alle notwendigen Parameter gesetzt sind wird ein User Objekt zurückgegeben, wenn nicht NULL  
     */
     private function createAccountFromParams($onlyemail){
         if (($onlyemail  || isset($_POST['username'])) && isset($_POST['email']) && isset($_POST['password'])){

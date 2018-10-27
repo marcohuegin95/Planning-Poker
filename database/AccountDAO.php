@@ -1,8 +1,7 @@
 <?php 
 /**
  * AccountDAO
- *
- * Interface for basic account operations
+ * @author Timon Müller-Wessling
  */
 interface AccountDAO{
     function register($account);

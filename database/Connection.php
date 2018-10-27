@@ -3,7 +3,8 @@
 /**
  * Connection
  *
- * Creates the connection to the Database
+ * Erzeugt die Datenbankverbindung
+ * @author Timon Müller-Wessling   
  */
 class Connection{
 
@@ -20,7 +21,7 @@ class Connection{
             return $conn; 
         }
         catch(PDOException $e){
-            //TODO
+            error_log("Interner Fehler ". $e->getMessage(), 0);
         }
     }
 

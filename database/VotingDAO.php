@@ -1,8 +1,7 @@
 <?php 
 /**
  * VotingtDAO
- *
- * Interface for voting operations
+ * @author Timon Müller-Wessling
  */
 interface VotingDAO{
     function insert($vote);
