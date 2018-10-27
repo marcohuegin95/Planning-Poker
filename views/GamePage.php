@@ -3,7 +3,8 @@
 /**
  * GamePage
  *
- * Game Page which renders the Game Site
+ * Zeigt die Spiel Seite an
+ * @author Timon Müller-Wessling
  */
 class GamePage implements Page{
 

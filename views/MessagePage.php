@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Stellt das Basiskonstrukt von Seiten an, die eine Meldung an den Nutzer 
+ * anzeigen sollen.
+ */
 abstract class MessagePage{
 
     protected $message;

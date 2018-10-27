@@ -4,8 +4,9 @@ require 'MessagePage.php';
 
 /**
  * DashboardPage
- *
- * Dashboard Page which renders the Dashboard Site
+ * 
+ * Zeigt das Dashboard eines users an
+ * @author Timon Müller-Wessling
  */
 class DashboardPage extends MessagePage implements Page{
 
@@ -23,8 +24,9 @@ class DashboardPage extends MessagePage implements Page{
     }
 
     /**
-     * Extracts the old games and invites from the given paramter
-     * and saves them in the fields invites and oldgames
+     * Teilt die übergeben votes anhand ihres Endes in
+     * Einladungen und Abgelaufenen Spiele ein und speichert
+     * diese in die vorgesehenen Attibute
      */
     private function extractInvites($votes){
         $now = new DateTime();
@@ -39,7 +41,9 @@ class DashboardPage extends MessagePage implements Page{
         }
     }
 
-
+    /**
+     * Gibt den Html code einer Liste der Einladungen zurück
+     */
     private function displayInvites(){
         $items = '';
         foreach($this->invites as $invite){
@@ -63,6 +67,9 @@ class DashboardPage extends MessagePage implements Page{
         return $items;
     }
 
+    /**
+     * Gibt den Html code einer Liste alter spiele zurück
+     */
     private function displayOldGames(){
         $items = '';
         foreach($this->oldgames as $oldgame){

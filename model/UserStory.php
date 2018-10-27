@@ -1,5 +1,9 @@
 <?php 
 
+/**
+ * Repräsentiert eine User Story
+ * @author Timon Müller-Wessling
+ */
 class UserStory implements JsonSerializable{
 
 

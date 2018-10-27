@@ -1,4 +1,5 @@
 <?php 
+
 /**
  * VotingtDAO
  * @author Timon Müller-Wessling

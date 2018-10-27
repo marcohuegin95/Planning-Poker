@@ -5,7 +5,8 @@ require 'MessagePage.php';
 /**
  * LoginPage
  *
- * Login Page which renders the Login Site and given messages or errors
+ * Zeigt die Login Seite an
+ * @author Timon Müller-Wessling
  */
 class LoginPage extends MessagePage implements Page{
 

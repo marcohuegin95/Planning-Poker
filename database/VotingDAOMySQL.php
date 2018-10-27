@@ -3,6 +3,7 @@
 require 'VotingDAO.php';
 require 'model/Vote.php';
 require 'model/User.php';
+
 /**
  * VotingtDAO
  * 
@@ -41,7 +42,6 @@ class VotingDAOMySQL implements VotingDAO{
                 error_log("Interner Fehler ". $e->getMessage(), 0);
                 $con->rollback();
             }
-			return false;
                
         }
         return false;

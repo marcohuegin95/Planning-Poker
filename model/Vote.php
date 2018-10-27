@@ -1,6 +1,9 @@
 <?php 
 
-
+/**
+ * Repräsentiert ein Vote objekt mit allen Abhänigkeiten
+ * @author Timon Müller-Wessling
+ */
 class Vote implements JsonSerializable{
     
 
@@ -99,8 +102,11 @@ class Vote implements JsonSerializable{
         return $this;
     }
 
+    /**
+     * Prüft ob alle notwendigen Variablen gesetzt wurden
+     */
     public function validate(){
-        return true;
+        return $name && $end && !empty($users) && !empty($user_storys);
     }
 
 

@@ -1,4 +1,5 @@
 <?php 
+
 /**
  * AccountDAO
  * @author Timon Müller-Wessling

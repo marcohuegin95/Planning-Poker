@@ -3,8 +3,7 @@
 /**
  * User
  *
- * Simple User Object
- * Stores the points voted for a specific user story
+ * User Objekt, welches einen Nutzer repräsentiert
  */
 class User implements JsonSerializable{
 
@@ -19,26 +18,31 @@ class User implements JsonSerializable{
     private $validate_error;
 
 
-
-    
+    /**
+     * Prüft ob der Nutzer gültige Daten hat
+     * Falls nicht wird das attribute validate_error gesetzt
+     */
     public function validate(){
         if ($this->username && $this->email && $this->password){
             if (strlen($this->username) < 5){
-                $this->validate_error = 'Username needs to be at least 5 characters';
+                $this->validate_error = 'Nutzername muss mindestens 5 Zeichen beinhalten';
                 return false;    
             }
             if (strlen($this->password) < 5){
-                $this->validate_error = 'Password needs to be at least 5 characters';
+                $this->validate_error = 'Nutzername muss mindestens 5 Zeichen beinhalten';
                 return false;    
             }
 
         }else{
-            $this->validate_error = 'Empty account values';
+            $this->validate_error = 'Nicht gesetzte Nutzerwerte';
             return false;
         }
         return true;
     }
 
+    /**
+     * Gibt den letzen aufgetretenen Fehler zurück.
+     */
     public function getLastValidateError(){
         return $this->validate_error;
     }

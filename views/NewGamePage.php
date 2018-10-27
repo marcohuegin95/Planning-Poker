@@ -3,7 +3,7 @@
 /**
  * NewGamePage
  *
- * New Game Page which renders the Game Site
+ * Zeigt den Dialoge an, mit dem eine neue Abstimmung angelegt werden kann
  */
 class NewGamePage extends MessagePage implements Page{
 
