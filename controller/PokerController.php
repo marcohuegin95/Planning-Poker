@@ -53,7 +53,7 @@ class PokerController{
             echo "hat geklappt";
             die();
         }else{
-            echo 'fehler, TODO^^';
+            echo 'Spiel konnte nicht erfolgreich gespeichert werden';
         }
     }
 

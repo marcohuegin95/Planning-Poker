@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-
+    
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -79,7 +78,7 @@
                     <h4><label>Enddatum </label></h4>
                     <div class="input-group mb-3">
                         <div class="form-group">
-                            <input type="date" id="enddatum" name="enddatum" value="2018-12-22" min="2018-12-01" max="2018-12-31" />
+                            <input type="date" id="enddatum" name="enddatum" min="2018-01-01"/>
                         </div>
                     </div>
                 </div>

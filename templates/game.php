@@ -52,19 +52,19 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            User-Story <b>[<span id="idAktuelleStory">1</span>/<span id="anzahlStorys">10</span>]</b>
+                            User-Story <b>[<span id="aktuelleUserStoryNr">1</span>/<span id="anzahlStorys">10</span>]</b>
                             <a href="#">
-                                <i class="fa fa-arrow-left" style="font-size:40px;color:blue"></i>
+                                <i class="fa fa-arrow-left" style="font-size:40px;color:blue" id="storyZurueck"></i>
                             </a>
                             <a href="#">
-                                <i class="fa fa-arrow-right" style="font-size:40px;color:blue"></i>
+                                <i class="fa fa-arrow-right" style="font-size:40px;color:blue" id="storyVorwaerts"></i>
                             </a>
                         </h3>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title" id="aktuelleUserstoryTitel">Optimierung der DB-Anbindung</h2>
+                        <h2 class="card-title" id="aktuelleUserStoryTitel">Optimierung der DB-Anbindung</h2>
                         </br>
-                        <p class="card-text" id="aktuelleUserstoryBeschreibung">Lorem ipsum dolor sit amet, consetetur
+                        <p class="card-text" id="aktuelleUserStoryBeschreibung">Lorem ipsum dolor sit amet, consetetur
                             sadipscing elitr, sed diam nonumy
                             eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
                             eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
@@ -119,13 +119,6 @@
                         <button class="btn btn-primary" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value)">
                             <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
                         </button>
-                    </div>
-                    <div class="col-*-*">
-                        <div class="row top-buffer"></div>
-                    </div>
-                    <div class="text-center">
-                        <a href="#" class="btn btn-lg btn-success"><i class="fa fa-hand-o-left" style="font-size:36px"></i>
-                            Schätzen</a>
                     </div>
                     <div class="col-*-*">
                         <div class="row top-buffer"></div>
