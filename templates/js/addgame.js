@@ -41,8 +41,7 @@ $(document).ready(function () {
             // loop through each td and create new elements with name of newid
             $.each($("#tab_logic tbody tr:nth(0) td"), function () {
                 var cur_td = $(this);
-
-                var children = cur_td.children();
+                var neueZeile = cur_td.children();
 
                 // add new td and element if it has a nane
                 if ($(this).data("name") != undefined) {
@@ -50,7 +49,7 @@ $(document).ready(function () {
                         "data-name": $(cur_td).data("name")
                     });
 
-                    var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
+                    var c = $(cur_td).find($(neueZeile[0]).prop('tagName')).clone().val("");
                     c.attr("name", $(cur_td).data("name") + "[]");
                     c.appendTo($(td));
                     td.appendTo($(tr));

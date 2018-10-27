@@ -107,14 +107,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr id='addr0' data-id="0" class="hidden">
+                                    <tr id='addr0' data-id="0">
                                         <td data-name="story_names">
-                                            <input type="text" id="in_storyTitel" placeholder='Story-Titel eingeben'
-                                                class="form-control" />
+                                            <input type="text" id="in_storyTitel" placeholder='Story-Titel eingeben' class="form-control" />
                                         </td>
                                         <td data-name="story_descriptions">
-                                            <input type="text" id="in_storyBeschreibung" placeholder='Beschreibung eingeben'
-                                                class="form-control" />
+                                            <input type="text" id="in_storyBeschreibung" placeholder='Beschreibung eingeben' class="form-control" />
                                         </td>
                                     </tr>
                                 </tbody>
