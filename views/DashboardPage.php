@@ -49,10 +49,9 @@ class DashboardPage implements Page{
                                     <h5 class="mb-1">'.$invite->getName().'</h5>
                                     <small>'.$invite->getEnd().'</small>
                                 </div>
-                                <p class="mb-1">Kleine Beschreibung des tollen Projektes
-                                    <button href="/game?id='.$invite->getId().'" class="btn btn-lg btn-success">Teilnehmen</button>
-                                    <button href="#" class="btn btn-default"><i class="fa fa-trash-o" style="font-size:30px;color:red"></i></button>
-                                </p>
+                                <div class="mb-1">
+                                    <a href="/game?id='.$invite->getId().'" class="btn btn-lg btn-success">Teilnehmen</a>
+                                </div>
                             </div>
                         </div>
                        </div>';
@@ -75,12 +74,11 @@ class DashboardPage implements Page{
                                     </h5>
                                     <small>'.$oldgame->getEnd().'</small>
                                 </div>
-                                <p class="mb-1">
-                                    Kleine Beschreibung des tollen Projektes
+                                <div class="mb-1">
                                     <a href="/game?id='.$oldgame->getId().'">
                                         <i class="fa fa-external-link" style="font-size:40px;color:white"></i>
                                     </a>
-                                </p>
+                                </div>
                             </div>
                         </div>
                        </div>';
