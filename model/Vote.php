@@ -106,7 +106,7 @@ class Vote implements JsonSerializable{
      * Prüft ob alle notwendigen Variablen gesetzt wurden
      */
     public function validate(){
-        return $name && $end && !empty($users) && !empty($user_storys);
+        return $this->name && $this->end && !empty($this->users) && !empty($this->user_storys);
     }
 
 
