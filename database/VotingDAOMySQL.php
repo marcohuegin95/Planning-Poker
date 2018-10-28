@@ -228,7 +228,7 @@ class VotingDAOMySQL implements VotingDAO{
         if (!($userid = $currentUserId)){
             $sql .= " AND v.end <= NOW()";
         }
-        $stmt = $con->prepare();
+        $stmt = $con->prepare($sql);
         $stmt->bindParam(':stroyid', $story_var);
         $stmt->bindParam(':currentUser', $current_user_var);
         $stmt->bindParam(':userId', $user_var);
