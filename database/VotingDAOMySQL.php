@@ -233,7 +233,7 @@ class VotingDAOMySQL implements VotingDAO{
         $stmt->bindParam(':currentUser', $current_user_var);
         $stmt->bindParam(':userId', $user_var);
         
-        $vote_var = $voteId;
+        $story_var = $userStoryId;
         $current_user_var = $currentUser;
         $user_var = $userId;
         try{
