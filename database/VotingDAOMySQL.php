@@ -226,7 +226,7 @@ class VotingDAOMySQL implements VotingDAO{
 
         //die Punkte anderer Spieler dürfen nur geladen werden, falls das vote beendet ist
         if (!($userid = $currentUserId)){
-            $sql .= " AND v.end >= NOW()";
+            $sql .= " AND v.end <= NOW()";
         }
         $stmt = $con->prepare();
         $stmt->bindParam(':stroyid', $story_var);
