@@ -67,7 +67,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Verfügbare Teilnehmer</label>
                         </div>
-                        <select class="custom-select" id="in_teilnehmer" name="users[]" required>
+                        <select class="custom-select" id="in_teilnehmer" name="users[]" required multiple>
                             <?php echo $this->displayUserList() ?>
                         </select>
                     </div>

@@ -1,3 +1,11 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Erstellungszeit: 28. Okt 2018 um 13:20
+-- Server-Version: 10.1.34-MariaDB
+-- PHP-Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,7 +71,6 @@ CREATE TABLE `user_story` (
   `fk_vote` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -76,18 +83,23 @@ CREATE TABLE `vote` (
   `end` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Indizes der exportierten Tabellen
+--
 
-
+--
 -- Indizes für die Tabelle `rel_user_user_story`
 --
 ALTER TABLE `rel_user_user_story`
-  ADD PRIMARY KEY (`fk_user`,`fk_user_story`);
+  ADD PRIMARY KEY (`fk_user`,`fk_user_story`),
+  ADD KEY `fk_user_story` (`fk_user_story`);
 
 --
 -- Indizes für die Tabelle `rel_vote_user`
 --
 ALTER TABLE `rel_vote_user`
-  ADD PRIMARY KEY (`fk_user`,`fk_vote`);
+  ADD PRIMARY KEY (`fk_user`,`fk_vote`),
+  ADD KEY `fk_vote` (`fk_vote`);
 
 --
 -- Indizes für die Tabelle `user`
@@ -100,7 +112,8 @@ ALTER TABLE `user`
 -- Indizes für die Tabelle `user_story`
 --
 ALTER TABLE `user_story`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_vote` (`fk_vote`);
 
 --
 -- Indizes für die Tabelle `vote`
@@ -116,19 +129,43 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `user_story`
 --
 ALTER TABLE `user_story`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `rel_user_user_story`
+--
+ALTER TABLE `rel_user_user_story`
+  ADD CONSTRAINT `rel_user_user_story_ibfk_1` FOREIGN KEY (`fk_user_story`) REFERENCES `user_story` (`id`),
+  ADD CONSTRAINT `rel_user_user_story_ibfk_2` FOREIGN KEY (`fk_user`) REFERENCES `user` (`id`);
+
+--
+-- Constraints der Tabelle `rel_vote_user`
+--
+ALTER TABLE `rel_vote_user`
+  ADD CONSTRAINT `rel_vote_user_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `rel_vote_user_ibfk_2` FOREIGN KEY (`fk_vote`) REFERENCES `vote` (`id`);
+
+--
+-- Constraints der Tabelle `user_story`
+--
+ALTER TABLE `user_story`
+  ADD CONSTRAINT `user_story_ibfk_1` FOREIGN KEY (`fk_vote`) REFERENCES `vote` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
