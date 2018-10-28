@@ -70,6 +70,24 @@ class PokerController{
         $page->render();
     }
 
+    
+    /**
+     * Lädt die abgestimmten Punkte für den momentan angemdeten Benutzer
+     */
+    public function loadPointsForCurrentUser(){
+        if (isset($_GET['storyid'])){
+            $dao = new VotingDAOMySQL();
+            $points = $dao->getVotePoints($_SESSION["userid"], $_GET['storyid'], $_SESSION["userid"]);
+            if ($points != NULL){
+                echo $points;
+            }else{
+                http_response_code(500);
+            }
+        }else{
+            http_response_code(400);
+        }
+    }
+
      /**
      * Versucht eine Abstimmung aus den POST parametern zu laden 
      * und zu speichern
@@ -155,6 +173,7 @@ class PokerController{
             http_response_code(400);
         }
     }
+
 
     
 

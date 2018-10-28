@@ -219,9 +219,16 @@ class VotingDAOMySQL implements VotingDAO{
      */
     function getVotePoints($userId, $userStoryId, $currentUserId){
         $con = Connection::createConnection();
-        $stmt = $con->prepare("SELECT points FROM rel_user_user_story rel INNER JOIN user_story story ON rel.fk_user_story = story.id
-                                                                          INNER JOIN rel_vote_user rel_user ON rel_user.fk_vote = story.fk_vote
-                                                                          WHERE story.id = :stroyid AND rel_user.fk_user = :currentUser AND rel.fk_user = :userId");
+        $sql = "SELECT points FROM rel_user_user_story rel INNER JOIN user_story story ON rel.fk_user_story = story.id
+                INNER JOIN rel_vote_user rel_user ON rel_user.fk_vote = story.fk_vote
+                INNER JOIN vote v ON story.fk_vote = v.id 
+                WHERE story.id = :stroyid AND rel_user.fk_user = :currentUser AND rel.fk_user = :userId";
+
+        //die Punkte anderer Spieler dürfen nur geladen werden, falls das vote beendet ist
+        if (!($userid = $currentUserId)){
+            $sql .= " AND v.end >= NOW()";
+        }
+        $stmt = $con->prepare();
         $stmt->bindParam(':stroyid', $story_var);
         $stmt->bindParam(':currentUser', $current_user_var);
         $stmt->bindParam(':userId', $user_var);

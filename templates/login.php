@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <div class="text-center">
             <h1>Wilkommen zum Planning Poker!</h1>
         </div>
