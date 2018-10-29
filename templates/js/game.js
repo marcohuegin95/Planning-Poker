@@ -4,6 +4,9 @@
  */
 var currentVote;
 
+/**
+ * Temp-Variablen die für den Endergbniss einer Abschätzung genutzt werden.
+ */
 var allpoints = 0;
 var spielAbgelaufen = false;
 
@@ -26,7 +29,6 @@ var tmpCurrentUserStoryPoints;
 $(document).ready(function () {
     if (typeof currentUserStoryCounter === "undefined") {
         currentUserStoryCounter = 0;
-        //console.log("ID: " + currentUserStoryID + " Titel: " + tmpCurrentUserStoryTitle + "  Beschreibung: " + tmpCurrentUserStoryDescription);
     }
     $("#storyVorwaerts").click(function () {
         if (typeof currentUserStoryCounter !== "undefined") {
@@ -34,8 +36,6 @@ $(document).ready(function () {
             currentUserStoryCounter = currentUserStoryCounter + 1;
             checkUserStoryID(currentUserStoryCounter);
             fillElements(currentUserStoryCounter);
-            
-
         }
     });
     $("#storyZurueck").click(function () {
@@ -44,18 +44,20 @@ $(document).ready(function () {
             currentUserStoryCounter = currentUserStoryCounter - 1;
             checkUserStoryID(currentUserStoryCounter);
             fillElements(currentUserStoryCounter);
-
-            //console.log("ID: " + currentUserStoryID + " Titel: " + tmpCurrentUserStoryTitle + "  Beschreibung: " + tmpCurrentUserStoryDescription);
         }
     });
     fillElements();
 });
 
-function fillElements(){
+/**
+  * @desc Routine,welche prüft ob das Spiel vorbei ist und dies entsprechend an der Oberfläche ausgibt.
+  *       Dazu werden hier die Funktionen aufgrufen, anhand der die Oberfläche während des laufenden Spiels angepasst wird
+*/
+function fillElements() {
     var now = new Date();
-    now.setHours(0,0,0,0);
-    spielAbgelaufen = (new Date(currentVote.end) )< now; 
-    
+    now.setHours(0, 0, 0, 0);
+    spielAbgelaufen = (new Date(currentVote.end)) < now;
+
     currentUserStoryID = currentVote.user_storys[currentUserStoryCounter].id;
     tmpCurrentUserStoryTitle = currentVote.user_storys[currentUserStoryCounter].title;
     tmpCurrentUserStoryDescription = currentVote.user_storys[currentUserStoryCounter].description;
@@ -65,17 +67,14 @@ function fillElements(){
     loadCurrentVotingCount(currentUserStoryID);
     prepareAllCurrentMembers();
 
-    if (spielAbgelaufen){
+    if (spielAbgelaufen) {
         $("#abgelaufenPlaceholder").html("<h5> Spiel ist bereits abgelaufen </h5>");
         $("#buttonAbschaetzung button").each(function () {
             $(this).prop("disabled", true);
         });
-
-
-    }else{
+    } else {
         $("#summary").hide();
     }
-
 }
 
 /**
@@ -94,22 +93,17 @@ function setValueFromVoteButtonToAjax(buttonValue, buttonID) {
 
         // Wenn Vorgang erfolgreich ...
         .done(function (data) {
-            //console.log("setValueFromVoteButtonToAjax:: currentUserStoryID-> " + currentUserStoryID+" buttonValue: "+buttonValue);
             fillElements();
-
 
         })
         // Wenn Vorgang nicht erfolgreich
         .fail(function () {
-            //console.log("setValueFromVoteButtonToAjax: POST nicht erfolgreich");
+            console.log("setValueFromVoteButtonToAjax: POST nicht erfolgreich");
         });
 
     // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
     return false;
 }
-
-
-
 
 
 /**
@@ -162,14 +156,13 @@ function loadVotePointsForCurrentUser(currentStoryID) {
         // Wenn Vorgang erfolgreich dann färbe Vote-Buttons und gebe Information in Info-Box aus
         .done(function (data) {
             if (data !== null || data !== '')
-            console.log("loadVotePointsForCurrentUser: Punkte-> " + data + " currentStoryID: " + currentStoryID);
-            //console.log('Punkte laden: '+data);
-            if (data.trim() == ''){
+                console.log("loadVotePointsForCurrentUser: Punkte-> " + data + " currentStoryID: " + currentStoryID);
+            if (data.trim() == '') {
                 data = null;
             }
             setLabelStoryPoints(data);
             setColorVoteButton(setButtonColorFromPoints(data));
-            
+
         })
         // Wenn Vorgang nicht erfolgreich
         .fail(function () {
@@ -197,11 +190,9 @@ function loadVotePoints(userID, index, callback) {
             storyid: currentUserStoryID
         },
         success: function (data) {
-            if (callback !== null){
+            if (callback !== null) {
                 callback(data, index);
             }
-            //tmpCurrentUserStoryPoints = data;
-            //console.log('tmpCurrentUserStoryPoints in Ajax:' + tmpCurrentUserStoryPoints);
             return data;
         }
     })
@@ -219,18 +210,6 @@ function loadVotePoints(userID, index, callback) {
     return false;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-// 1. Alle Teilnehmer (aus Vote-Objekt) laden
-// 2. Für jeden Teilnehmer prüfen ob dieser schon abgestimmt hat (foreach->Ajax)
-// 3. Anzahl Teilnehmer mit Punkten zählen und an Oberfläche ausgeben
-// 4. Entsprechenden Teilnehmer in der linken Box anzeigen
-
-function setTmpCurrentUserStoryPoints(tmpData) {
-    tmpCurrentUserStoryPoints = tmpData;
-    //console.log('tmpData:' + tmpData);
-}
-
-
 /**
   * @desc Läd die Informationen, wie viele Teilnehmer bereits für eine User-Story abgestimmt haben und welche Teilnehmer es ingesamt gibt.
   *       Die gesammelten Informationen werden dann an Funktionen weitergegeben, die diese an der Oberfläche ausgeben.
@@ -240,36 +219,34 @@ function prepareAllCurrentMembers() {
     var countCallback = 0;
     $("#currentUserBox").text('');
     for (var i = 0; i < userLength; i++) {
-        loadVotePoints(currentVote.users[i].id , i,  function(data, index) {
+        loadVotePoints(currentVote.users[i].id, i, function (data, index) {
             countCallback++;
             if (currentVote.users[index].username !== undefined || currentVote.users[index].username !== '') {
-                if (data.trim() == ''){
+                if (data.trim() == '') {
                     data = 'Na'
-                }else{
+                } else {
 
-                    if (data > 0){
-                        allpoints += parseInt(data, 10);      
+                    if (data > 0) {
+                        allpoints += parseInt(data, 10);
                     }
-                    
+
                 }
-                var newUserDiv =  "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'>" +
-                    currentVote.users[index].username + "<span class='badge badge-primary badge-pill'>"+data+"</span></div></div></h3>";
-                if (countCallback == currentVote.users.length ){
+                var newUserDiv = "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'>" +
+                    currentVote.users[index].username + "<span class='badge badge-primary badge-pill'>" + data + "</span></div></div></h3>";
+                if (countCallback == currentVote.users.length) {
                     var durchschnitt = Math.round(allpoints / currentVote.users.length);
-                    if (spielAbgelaufen){
+                    if (spielAbgelaufen) {
                         $("#durchschnitt").text(durchschnitt);
                     }
                 }
             }
             setMemberBox(newUserDiv);
-        
 
-          });  // Punkte laden und wenn vorhanden in tmpCurrentUserStoryPoints laden 
-        //console.log('Test: '+loadVotePoints(currentVote.users[i].id));
-        
+
+        });  
+
     }
 }
-//////////////////////////////////////////////////////////////////////////////////////////////
 /**
   * @desc Setz (Bootsrap-Farbe-Klasse) auf der Oberfläche den übergeben Button und löscht vorherige Färbungen aller Abschätzungs-Buttons
 */
@@ -311,7 +288,7 @@ function setLabelStoryPoints(storyValue) {
         $("#eigeneSchaetzung").text('nicht geschätzt, da du nicht sicher bist!');
     } else if (storyValue == 1) {
         $("#eigeneSchaetzung").text('auf ' + storyValue + ' Story Point geschätzt!');
-    } else if (storyValue == null){
+    } else if (storyValue == null) {
         $("#eigeneSchaetzung").text(' noch nicht geschätzt');
     }
     else {
@@ -323,12 +300,12 @@ function setLabelStoryPoints(storyValue) {
   * @desc Gibt die übergeben Anzahl der Teilnehmer auf der Oberfläche aus 
 */
 function setLabelNumberMember(numberOfMember) {
-    if (numberOfMember.trim()!== ''){
+    if (numberOfMember.trim() !== '') {
         $("#anzahlTeilnehmerMitAbschaetzung").text(numberOfMember);
     } else {
         $("#anzahlTeilnehmerMitAbschaetzung").text('unknown');
     }
-    
+
 }
 
 /**
@@ -366,7 +343,7 @@ function setUserStory(title, description, storyNr) {
         console.log("Keine Daten für User-Story-Anzeige übergeben!");
     }
 }
- 
+
 /**
   * @desc Anzahl der Gesamtstorys aulesen aus currentVote-Objekt und an der Oberfläche anzeigen
 */
