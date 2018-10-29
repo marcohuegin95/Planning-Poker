@@ -112,7 +112,7 @@
                                 <div class="numberCircleHundert">100</div></br>SP
                             </button>
                             <button class="btn btn-primary m-1 p-1" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value, button_Fragezeichen)">
-                                <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
+                            <div class="numberCircle">?</div></br>SP
                             </button>
                         </div>
                     </div>
