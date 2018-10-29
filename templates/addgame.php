@@ -118,9 +118,9 @@
                 </div>
                 <div class="col-12">
                     <div class="text-center">
-                        <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-save" style="font-size:36px"></i>
+                        <button type="submit" class="btn btn-lg btn-success">
                             Speichern</button>
-                        <a href="/dashboard" class="btn btn-lg btn-danger"><i class="fa fa-times" style="font-size:36px"></i>
+                        <a href="/dashboard" class="btn btn-lg btn-danger">
                             Abbrechen</a>
                     </div>
                 </div>

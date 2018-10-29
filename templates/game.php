@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="templates/css/bewertung.css">
     <link rel="stylesheet" href="templates/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="templates/css/index.css">
-    <link rel="stylesheet" href="templates/css/font-awesome/font-awesome.min.css">
 
 </head>
 

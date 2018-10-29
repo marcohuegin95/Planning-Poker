@@ -83,9 +83,7 @@ class DashboardPage extends MessagePage implements Page{
                                     <small>'.$oldgame->getEnd().'</small>
                                 </div>
                                 <div class="mb-1">
-                                    <a href="/game?id='.$oldgame->getId().'">
-                                        <i class="fa fa-external-link" style="font-size:40px;color:white"></i>
-                                    </a>
+                                    <a href="/game?id='.$oldgame->getId().'" class="btn btn-lg btn-success">Aufrufen</a>
                                 </div>
                             </div>
                         </div>
