@@ -78,7 +78,7 @@
                         <button class="btn btn-primary m-1 p-1" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value, button_Null)">
                             <div class="numberCircle">0</div></br>SP
                         </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_EinHalb" value="0,5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
+                        <button class="btn btn-primary m-1 p-1" id="button_EinHalb" value="0.5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
                             <div class="numberCircleWithComma">0,5</div></br>SP
                         </button>
                         <button class="btn btn-primary m-1 p-1" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value, button_Eins)">
@@ -137,38 +137,8 @@
                             <div class="col-sm-4">
                                 <h3><b>Teilnehmer:</b></h3>
                             </div>
-                            <div class="col-sm-8">
-                                <h3>
-                                    <div class="card">
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <i class="fa fa-edit" style="font-size:36px"></i>
-                                            Maxi
-                                            <span class="badge badge-primary badge-pill">10</span>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <i class="fa fa-comment-o" style="font-size:36px"></i>
-                                            Julia
-                                            <span class="badge badge-primary badge-pill">5</span>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <i class="fa fa-github-square" style="font-size:36px"></i>
-                                            Timon
-                                            <span class="badge badge-primary badge-pill">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <i class="fa fa-github-square" style="font-size:36px"></i>
-                                            Jeffrey
-                                            <span class="badge badge-primary badge-pill">5</span>
-                                        </div>
-                                    </div>
+                            <div class="col-sm-8" id="currentUserBox">
                             </div>
-                            </h3>
                         </div>
                     </div>
                 </div>
@@ -180,13 +150,13 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            <h3>Du hast diese Aufgabe auf <b>
-                                    <font color="red"><span id="eigeneSchaetzung">4</span> Story Points</font>
-                                </b> geschätzt!</h3><br>
+                            <h3>Du hast diese Aufgabe  <b>
+                                    <font color="red"><span id="eigeneSchaetzung">noch nicht geschätzt!</span></font></b> 
+                            </h3><br>
                         </p>
                         <p class="card-text">
                             <h3>Bisher haben <b>
-                                    <font color="red"><span id="anzahlTeilnehmerMitAbschaetzung">5</span> Teilnehmer</font>
+                                    <font color="red"><span id="anzahlTeilnehmerMitAbschaetzung"></span> Teilnehmer</font>
                                 </b> abgeschätzt.</h3><br>
                         </p>
                     </div>

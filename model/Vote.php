@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Repräsentiert ein Vote objekt mit allen Abhänigkeiten
+ * Repräsentiert ein Vote Objekt mit allen Abhänigkeiten
  * @author Timon Müller-Wessling
  */
 class Vote implements JsonSerializable{
