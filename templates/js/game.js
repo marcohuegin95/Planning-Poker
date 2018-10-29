@@ -4,6 +4,9 @@
  */
 var currentVote;
 
+var allpoints = 0;
+var spielAbgelaufen = false;
+
 /**
  * Temp-Variablen die für die Zwischenspeicherung der Storys genutzt werden
  */
@@ -27,14 +30,17 @@ $(document).ready(function () {
     }
     $("#storyVorwaerts").click(function () {
         if (typeof currentUserStoryCounter !== "undefined") {
+            allpoints = 0;
             currentUserStoryCounter = currentUserStoryCounter + 1;
             checkUserStoryID(currentUserStoryCounter);
             fillElements(currentUserStoryCounter);
+            
 
         }
     });
     $("#storyZurueck").click(function () {
         if (typeof currentUserStoryCounter !== "undefined") {
+            allpoints = 0;
             currentUserStoryCounter = currentUserStoryCounter - 1;
             checkUserStoryID(currentUserStoryCounter);
             fillElements(currentUserStoryCounter);
@@ -46,6 +52,10 @@ $(document).ready(function () {
 });
 
 function fillElements(){
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    spielAbgelaufen = (new Date(currentVote.end) )< now; 
+    
     currentUserStoryID = currentVote.user_storys[currentUserStoryCounter].id;
     tmpCurrentUserStoryTitle = currentVote.user_storys[currentUserStoryCounter].title;
     tmpCurrentUserStoryDescription = currentVote.user_storys[currentUserStoryCounter].description;
@@ -54,6 +64,17 @@ function fillElements(){
     loadVotePointsForCurrentUser(currentUserStoryID);
     loadCurrentVotingCount(currentUserStoryID);
     prepareAllCurrentMembers();
+
+    if (spielAbgelaufen){
+        $("#abgelaufenPlaceholder").html("<h5> Spiel ist bereits abgelaufen </h5>");
+        $("#buttonAbschaetzung button").each(function () {
+            $(this).prop("disabled", true);
+        });
+
+
+    }else{
+        $("#summary").hide();
+    }
 
 }
 
@@ -216,16 +237,29 @@ function setTmpCurrentUserStoryPoints(tmpData) {
 */
 function prepareAllCurrentMembers() {
     var userLength = currentVote.users.length;
+    var countCallback = 0;
     $("#currentUserBox").text('');
     for (var i = 0; i < userLength; i++) {
         loadVotePoints(currentVote.users[i].id , i,  function(data, index) {
-            
+            countCallback++;
             if (currentVote.users[index].username !== undefined || currentVote.users[index].username !== '') {
                 if (data.trim() == ''){
                     data = 'Na'
+                }else{
+
+                    if (data > 0){
+                        allpoints += parseInt(data, 10);      
+                    }
+                    
                 }
                 var newUserDiv =  "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'><i class='fa fa-github-square' style='font-size:36px'></i>" +
                     currentVote.users[index].username + "<span class='badge badge-primary badge-pill'>"+data+"</span></div></div></h3>";
+                if (countCallback == currentVote.users.length ){
+                    var durchschnitt = allpoints / currentVote.users.length;
+                    if (spielAbgelaufen){
+                        $("#durchschnitt").text(durchschnitt);
+                    }
+                }
             }
             setMemberBox(newUserDiv);
         

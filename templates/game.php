@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="templates/css/bewertung.css">
     <link rel="stylesheet" href="templates/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="templates/css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="templates/css/font-awesome/font-awesome.min.css">
 
 </head>
 
@@ -41,7 +41,9 @@
         </div>
     </nav>
     <div class="container-fluid mt-3">
-
+        <div id="abgelaufenPlaceholder" class="row">
+            
+        </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="card mt-3">
@@ -163,6 +165,14 @@
                                     <font color="red"><span id="anzahlTeilnehmerMitAbschaetzung"></span> Teilnehmer</font>
                                 </b> abgeschätzt.</h3><br>
                         </p>
+                        <div id="summary">
+                        <p class="card-text">
+                            <h3>Ergebniss des Spieles ist  <b>
+                                    <font color="red"><span id="durchschnitt"></span> </font>
+                                </b> Story points</h3><br>
+                        </p>    
+                    </div>
+                        
                     </div>
                 </div>
             </div>
