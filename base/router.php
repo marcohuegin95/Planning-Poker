@@ -9,6 +9,9 @@ require 'filters/Filter.php';
  * verantwortliche Schnittstelle. Zusätzlich werden, die für die Anfrage
  * angegebenen Filter aufgerufen
  * @author Timon Mueller-Wessling
+ * TODO Routing, welches unabhänig vom absoluten Pfad ist, um zu ermöglichen, dass
+ * das Projekt in Unterordner geschoben werden kann und nicht alle Anfragen des Servers abgreift -> aufrgund der kleinen 
+ * Projektgröße nicht umgesetzt
  */
 class Router
 {
