@@ -151,27 +151,57 @@ class VotingDAOMySQL implements VotingDAO{
     }
 
     /**
+     * Gibt zurück, ob der Nutzer zu der übergenen
+     * user story berechtigt ist Punkte zusetzen.
+     * Dabei wird auch überprüft, ob das Vote der User Story bereits abgeschlossen ist
+     */
+    private function canSetPoints($con, $userId, $userStoryId){
+        $sql = "SELECT v.id  FROM user_story story
+                INNER JOIN rel_vote_user rel_user ON rel_user.fk_vote = story.fk_vote
+                INNER JOIN vote v ON story.fk_vote = v.id 
+                WHERE story.id = :stroyid AND rel_user.fk_user = :userid AND v.end > NOW()";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':stroyid', $story_var);
+        $stmt->bindParam(':userid', $user_var);
+
+        $story_var = $userStoryId;
+        $user_var = $userId;
+        try{
+            $stmt->execute();
+            if ($stmt->rowCount() > 0){
+                return true;
+            }
+
+        }catch(Exception $e){
+            error_log("Interner Fehler ". $e->getMessage(), 0);
+        }
+        return false;
+    }
+
+    /**
      * Speichert die Punkte zu einer user story.
      * Falls bereits Punkte gesetzt wurden, werden diese überschrieben
      */
     function setVotePoints($userId, $userStoryId, $points){
         $con = Connection::createConnection();
         try{
+            if ($this->canSetPoints($con, $userId, $userStoryId)){
+                $stmt = $con->prepare("INSERT INTO rel_user_user_story (fk_user, fk_user_story, points) 
+                                       VALUES (:fk_user, :fk_user_story, :points)
+                                       ON DUPLICATE KEY UPDATE
+                                       points= :points");
+                $stmt->bindParam(':fk_user', $user_var);
+                $stmt->bindParam(':fk_user_story', $user_story_var);
+                $stmt->bindParam(':points', $points_var);
 
-            $stmt = $con->prepare("INSERT INTO rel_user_user_story (fk_user, fk_user_story, points) 
-                                   VALUES (:fk_user, :fk_user_story, :points)
-                                   ON DUPLICATE KEY UPDATE
-                                   points= :points");
-            $stmt->bindParam(':fk_user', $user_var);
-            $stmt->bindParam(':fk_user_story', $user_story_var);
-            $stmt->bindParam(':points', $points_var);
+                $user_var = $userId;
+                $user_story_var = $userStoryId;
+                $points_var = $points;
 
-
-            $user_var = $userId;
-            $user_story_var = $userStoryId;
-            $points_var = $points;
-
-            return $stmt->execute();
+                return $stmt->execute();
+            }
+            
         }catch(Exception $e){
             error_log("Interner Fehler ". $e->getMessage(), 0);
         }

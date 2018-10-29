@@ -252,10 +252,10 @@ function prepareAllCurrentMembers() {
                     }
                     
                 }
-                var newUserDiv =  "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'><i class='fa fa-github-square' style='font-size:36px'></i>" +
+                var newUserDiv =  "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'>" +
                     currentVote.users[index].username + "<span class='badge badge-primary badge-pill'>"+data+"</span></div></div></h3>";
                 if (countCallback == currentVote.users.length ){
-                    var durchschnitt = allpoints / currentVote.users.length;
+                    var durchschnitt = Math.round(allpoints / currentVote.users.length);
                     if (spielAbgelaufen){
                         $("#durchschnitt").text(durchschnitt);
                     }

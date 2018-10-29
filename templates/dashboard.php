@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="templates/css/bewertung.css">
     <link rel="stylesheet" href="templates/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="templates/css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -76,16 +75,6 @@
                         <h3>Vergangene Spiele</h3>
                     </div>
                     <?php echo $this->displayOldGames(); ?>
-                </div>
-                <div class="card">
-                        <div class="text-center">
-                            <a href="#">
-                                <i class="fa fa-cog" style="font-size:50px;color:royalblue"></i>
-                                <h4>
-                                    <p style="color: royalblue">Account anpassen</p>
-                                </h4>
-                            </a>
-                        </div>
                 </div>
             </div>
             <!--div class="col-sm-1"></div-->

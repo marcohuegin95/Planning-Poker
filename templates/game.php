@@ -41,8 +41,10 @@
         </div>
     </nav>
     <div class="container-fluid mt-3">
-        <div id="abgelaufenPlaceholder" class="row">
+        <div class="row">
+            <div class="col-12 text-center" id="abgelaufenPlaceholder">
             
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
@@ -51,18 +53,17 @@
                         <h3>
                             User-Story <b>[<span id="aktuelleUserStoryNr">1</span>/<span id="anzahlStorys">10</span>]</b>
                             <a href="#">
-                                <i class="fa fa-arrow-left" style="font-size:40px;color:blue" id="storyZurueck"></i>
+                                <i style="font-size:20px;color:blue" id="storyZurueck">zurück </i>
                             </a>
                             <a href="#">
-                                <i class="fa fa-arrow-right" style="font-size:40px;color:blue" id="storyVorwaerts"></i>
+                                <i style="font-size:20px;color:blue" id="storyVorwaerts"> vor</i>
                             </a>
                         </h3>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title" id="aktuelleUserStoryTitel">Optimierung der DB-Anbindung</h2>
+                        <h2 class="card-title" id="aktuelleUserStoryTitel">Lade...</h2>
                         </br>
-                        <p class="card-text" id="aktuelleUserStoryBeschreibung">Lorem ipsum dolor sit amet, consetetur
-                            sadipscing elitr, sed diam nonumy
+                        <p class="card-text" id="aktuelleUserStoryBeschreibung">Lade...
                             <br>
                         </p>
                     </div>
@@ -161,7 +162,7 @@
                             </h3><br>
                         </p>
                         <p class="card-text">
-                            <h3>Bisher haben <b>
+                            <h3>Bisher haben<b>
                                     <font color="red"><span id="anzahlTeilnehmerMitAbschaetzung"></span> Teilnehmer</font>
                                 </b> abgeschätzt.</h3><br>
                         </p>
