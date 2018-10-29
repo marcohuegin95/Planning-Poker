@@ -179,6 +179,40 @@ class VotingDAOMySQL implements VotingDAO{
 
     }
 
+
+
+    /**
+     * Läd die Anzahl an Nutzer, die in der UserStory abgestimmt haben.
+     * Nur wenn der momentan angemeldete Nutzer in dem Vote eingeladen ist, werden
+     * die Daten geladen
+     */
+    function getVoteCount($userstoryId, $currentUser){
+        $con = Connection::createConnection();
+        $sql = "SELECT count(*) as anz FROM rel_user_user_story rel INNER JOIN user_story story ON rel.fk_user_story = story.id
+                INNER JOIN rel_vote_user rel_user ON rel_user.fk_vote = story.fk_vote
+                INNER JOIN vote v ON story.fk_vote = v.id 
+                WHERE story.id = :stroyid AND rel_user.fk_user = :currentUser ";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':stroyid', $story_var);
+        $stmt->bindParam(':currentUser', $current_user_var);
+        
+        $story_var = $userstoryId;
+        $current_user_var = $currentUser;
+        try{
+            $stmt->execute();
+            if($row = $stmt->fetch()) {
+                return $row['anz'];
+             }
+    
+        }catch(Exception $e){
+            error_log("Interner Fehler ". $e->getMessage(), 0);
+
+        }
+        return NULL;
+    }
+
+
     /**
      * Läd alle Votings zu denen der übergeben Nutzer eingeladen wurde
      */
@@ -225,7 +259,7 @@ class VotingDAOMySQL implements VotingDAO{
                 WHERE story.id = :stroyid AND rel_user.fk_user = :currentUser AND rel.fk_user = :userId";
 
         //die Punkte anderer Spieler dürfen nur geladen werden, falls das vote beendet ist
-        if (!($userid = $currentUserId)){
+        if (!($userId == $currentUserId)){
             $sql .= " AND v.end <= NOW()";
         }
         $stmt = $con->prepare($sql);

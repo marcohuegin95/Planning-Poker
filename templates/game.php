@@ -70,47 +70,48 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         <h3>
-                            Schätzung: <b id="projektname"><?php echo $this->vote->getName() ?></b>
+                            Schätzung: <b id="projektname">
+                                <?php echo $this->vote->getName() ?></b>
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="buttonAbschaetzung">
-                        <button class="btn btn-primary m-1 p-1" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value, button_Null)">
-                            <div class="numberCircle">0</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_EinHalb" value="0.5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
-                            <div class="numberCircleWithComma">0,5</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value, button_Eins)">
-                            <div class="numberCircle">1</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Zwei" value="2" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwei)">
-                            <div class="numberCircle">2</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Drei" value="3" onclick="setValueFromVoteButtonToAjax(this.value, button_Drei)">
-                            <div class="numberCircle">3</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Fuenf" value="5" onclick="setValueFromVoteButtonToAjax(this.value, button_Fuenf)">
-                            <div class="numberCircle">5</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Acht" value="8" onclick="setValueFromVoteButtonToAjax(this.value, button_Acht)">
-                            <div class="numberCircle">8</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Dreizehn" value="13" onclick="setValueFromVoteButtonToAjax(this.value, button_Dreizehn)">
-                            <div class="numberCircle">13</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Zwanzig" value="20" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwanzig)">
-                            <div class="numberCircle">20</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Vierzig" value="40" onclick="setValueFromVoteButtonToAjax(this.value, button_Vierzig)">
-                            <div class="numberCircle">40</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Hundert" value="100" onclick="setValueFromVoteButtonToAjax(this.value, button_Hundert)">
-                            <div class="numberCircleHundert">100</div></br>SP
-                        </button>
-                        <button class="btn btn-primary m-1 p-1" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value, button_Fragezeichen)">
-                            <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
-                        </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Null" value="0" onclick="setValueFromVoteButtonToAjax(this.value, button_Null)">
+                                <div class="numberCircle">0</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_EinHalb" value="0.5" onclick="setValueFromVoteButtonToAjax(this.value, button_EinHalb)">
+                                <div class="numberCircleWithComma">0,5</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Eins" value="1" onclick="setValueFromVoteButtonToAjax(this.value, button_Eins)">
+                                <div class="numberCircle">1</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Zwei" value="2" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwei)">
+                                <div class="numberCircle">2</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Drei" value="3" onclick="setValueFromVoteButtonToAjax(this.value, button_Drei)">
+                                <div class="numberCircle">3</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Fuenf" value="5" onclick="setValueFromVoteButtonToAjax(this.value, button_Fuenf)">
+                                <div class="numberCircle">5</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Acht" value="8" onclick="setValueFromVoteButtonToAjax(this.value, button_Acht)">
+                                <div class="numberCircle">8</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Dreizehn" value="13" onclick="setValueFromVoteButtonToAjax(this.value, button_Dreizehn)">
+                                <div class="numberCircle">13</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Zwanzig" value="20" onclick="setValueFromVoteButtonToAjax(this.value, button_Zwanzig)">
+                                <div class="numberCircle">20</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Vierzig" value="40" onclick="setValueFromVoteButtonToAjax(this.value, button_Vierzig)">
+                                <div class="numberCircle">40</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Hundert" value="100" onclick="setValueFromVoteButtonToAjax(this.value, button_Hundert)">
+                                <div class="numberCircleHundert">100</div></br>SP
+                            </button>
+                            <button class="btn btn-primary m-1 p-1" id="button_Fragezeichen" value="-1" onclick="setValueFromVoteButtonToAjax(this.value, button_Fragezeichen)">
+                                <div class="numberCircle"><i class="fa fa-question" style="font-size:35px;color:black"></i></div></br>SP
+                            </button>
                         </div>
                     </div>
 
@@ -130,7 +131,9 @@
                                 <h3><b>Ende:</b></h3>
                             </div>
                             <div class="col-sm-8">
-                                <h3><?php echo $this->vote->getEnd() ?></h3>
+                                <h3>
+                                    <?php echo $this->vote->getEnd() ?>
+                                </h3>
                             </div>
                         </div>
                         <div class="row">
@@ -150,8 +153,9 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            <h3>Du hast diese Aufgabe  <b>
-                                    <font color="red"><span id="eigeneSchaetzung">noch nicht geschätzt!</span></font></b> 
+                            <h3>Du hast diese Aufgabe <b>
+                                    <font color="red"><span id="eigeneSchaetzung">noch nicht geschätzt!</span></font>
+                                </b>
                             </h3><br>
                         </p>
                         <p class="card-text">
@@ -163,21 +167,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="d-flex justify-content-between">
-                    <div>
-                    </div>
-                    <div><a href="" id="aktuellesSpielLink">
-                            <i class="fa fa-link" style="font-size:48px;color:red"></i>
-                            <h2>
-                                <font color="red">Link</font>
-                            </h2>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     </div>
     <script src="templates/js/jquery/jquery-3.3.1.min.js"></script>
@@ -185,7 +174,7 @@
     <script src="templates/js/bootstrap/bootstrap.min.js"></script>
     <script src="templates/js/game.js"></script>
     <script>
-        currentVote = <?php echo $this->voteData() ?>;
+        currentVote = <?php echo $this -> voteData() ?>;
     </script>
 
 </body>

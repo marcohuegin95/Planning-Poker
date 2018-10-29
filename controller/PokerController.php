@@ -80,10 +80,8 @@ class PokerController{
             $points = $dao->getVotePoints($_SESSION["userid"], $_GET['storyid'], $_SESSION["userid"]);
             if ($points != NULL){
                 echo $points;
-            }else{
-                http_response_code(500);
             }
-        }else{
+          }else{
             http_response_code(400);
         }
     }
@@ -166,15 +164,23 @@ class PokerController{
             $points = $dao->getVotePoints($_GET['userid'], $_GET['storyid'], $_SESSION["userid"]);
             if ($points != NULL){
                 echo $points;
-            }else{
-                http_response_code(500);
             }
         }else{
             http_response_code(400);
         }
     }
 
-
+    public function userVotingCount(){
+        if (isset($_GET['storyid'])){
+            $dao = new VotingDAOMySQL();
+            $count = $dao->getVoteCount($_GET['storyid'],  $_SESSION["userid"]);
+            if ($count != NULL){
+                echo $count;
+            }
+        }else{
+            http_response_code(400);
+        } 
+    }
     
 
 }

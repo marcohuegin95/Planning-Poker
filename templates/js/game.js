@@ -23,38 +23,39 @@ var tmpCurrentUserStoryPoints;
 $(document).ready(function () {
     if (typeof currentUserStoryCounter === "undefined") {
         currentUserStoryCounter = 0;
-        currentUserStoryID = currentVote.user_storys[currentUserStoryCounter].id;
-        tmpCurrentUserStoryTitle = currentVote.user_storys[currentUserStoryCounter].title;
-        tmpCurrentUserStoryDescription = currentVote.user_storys[currentUserStoryCounter].description;
-        setUserStory(tmpCurrentUserStoryTitle, tmpCurrentUserStoryDescription, currentUserStoryCounter + 1);
-        loadVotePointsForCurrentUser(currentUserStoryID);
         //console.log("ID: " + currentUserStoryID + " Titel: " + tmpCurrentUserStoryTitle + "  Beschreibung: " + tmpCurrentUserStoryDescription);
     }
     $("#storyVorwaerts").click(function () {
         if (typeof currentUserStoryCounter !== "undefined") {
             currentUserStoryCounter = currentUserStoryCounter + 1;
             checkUserStoryID(currentUserStoryCounter);
-            currentUserStoryID = currentVote.user_storys[currentUserStoryCounter].id;
-            tmpCurrentUserStoryTitle = currentVote.user_storys[currentUserStoryCounter].title;
-            tmpCurrentUserStoryDescription = currentVote.user_storys[currentUserStoryCounter].description;
-            setUserStory(tmpCurrentUserStoryTitle, tmpCurrentUserStoryDescription, currentUserStoryCounter + 1);
-            loadVotePointsForCurrentUser(currentUserStoryID);
-            //console.log("ID: " + currentUserStoryID + " Titel: " + tmpCurrentUserStoryTitle + "  Beschreibung: " + tmpCurrentUserStoryDescription);
+            fillElements(currentUserStoryCounter);
+
         }
     });
     $("#storyZurueck").click(function () {
         if (typeof currentUserStoryCounter !== "undefined") {
             currentUserStoryCounter = currentUserStoryCounter - 1;
             checkUserStoryID(currentUserStoryCounter);
-            currentUserStoryID = currentVote.user_storys[currentUserStoryCounter].id;
-            tmpCurrentUserStoryTitle = currentVote.user_storys[currentUserStoryCounter].title;
-            tmpCurrentUserStoryDescription = currentVote.user_storys[currentUserStoryCounter].description;
-            setUserStory(tmpCurrentUserStoryTitle, tmpCurrentUserStoryDescription, currentUserStoryCounter + 1);
-            loadVotePointsForCurrentUser(currentUserStoryID);
+            fillElements(currentUserStoryCounter);
+
             //console.log("ID: " + currentUserStoryID + " Titel: " + tmpCurrentUserStoryTitle + "  Beschreibung: " + tmpCurrentUserStoryDescription);
         }
     });
+    fillElements();
 });
+
+function fillElements(){
+    currentUserStoryID = currentVote.user_storys[currentUserStoryCounter].id;
+    tmpCurrentUserStoryTitle = currentVote.user_storys[currentUserStoryCounter].title;
+    tmpCurrentUserStoryDescription = currentVote.user_storys[currentUserStoryCounter].description;
+
+    setUserStory(tmpCurrentUserStoryTitle, tmpCurrentUserStoryDescription, currentUserStoryCounter + 1);
+    loadVotePointsForCurrentUser(currentUserStoryID);
+    loadCurrentVotingCount(currentUserStoryID);
+    prepareAllCurrentMembers();
+
+}
 
 /**
   * @desc Routine, welche Button-Value (User-Story Punkte-Abschätzung) via Ajax weiterreicht und im Backend verarbeitet
@@ -73,8 +74,8 @@ function setValueFromVoteButtonToAjax(buttonValue, buttonID) {
         // Wenn Vorgang erfolgreich ...
         .done(function (data) {
             //console.log("setValueFromVoteButtonToAjax:: currentUserStoryID-> " + currentUserStoryID+" buttonValue: "+buttonValue);
-            setColorVoteButton(buttonID);
-            setLabelStoryPoints(buttonValue);
+            fillElements();
+
 
         })
         // Wenn Vorgang nicht erfolgreich
@@ -85,6 +86,40 @@ function setValueFromVoteButtonToAjax(buttonValue, buttonID) {
     // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
     return false;
 }
+
+
+
+
+
+/**
+  * @desc Routine, welche die Punkte (Abschätzung) des aktuell angemeldeten User via Ajax aus dem Backend läd
+*/
+function loadCurrentVotingCount(currentStoryID) {
+    // Ajax-Aufruf
+    $.ajax({
+        type: 'GET',
+        url: '/loadvotecount',
+        data: {
+            storyid: currentStoryID
+        },
+        success: function (data) {
+            setLabelNumberMember(data);
+            return data;
+        }
+    })
+
+        // Wenn Vorgang nicht erfolgreich
+        .fail(function () {
+            //console.log("loadVotePointsForCurrentUser: GET zu DB nicht erfolgreich");
+            console.log('Keine Punkte vorhanden');
+            setLabelNumberMember('');
+
+        });
+
+    // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
+    return false;
+}
+
 
 
 /**
@@ -105,13 +140,22 @@ function loadVotePointsForCurrentUser(currentStoryID) {
 
         // Wenn Vorgang erfolgreich dann färbe Vote-Buttons und gebe Information in Info-Box aus
         .done(function (data) {
+            if (data !== null || data !== '')
             console.log("loadVotePointsForCurrentUser: Punkte-> " + data + " currentStoryID: " + currentStoryID);
-            setColorVoteButton(setButtonColorFromPoints(data));
+            //console.log('Punkte laden: '+data);
+            if (data.trim() == ''){
+                data = null;
+            }
             setLabelStoryPoints(data);
+            setColorVoteButton(setButtonColorFromPoints(data));
+            
         })
         // Wenn Vorgang nicht erfolgreich
         .fail(function () {
-            console.log("loadVotePointsForCurrentUser: GET zu DB nicht erfolgreich");
+            //console.log("loadVotePointsForCurrentUser: GET zu DB nicht erfolgreich");
+            console.log('Keine Punkte vorhanden')
+            setLabelStoryPoints(-1);
+            deleteColorAllVoteButtons();
         });
 
     // verhindert, dass die Seite durch das Formular neu geladen wird (Standardaktion)
@@ -122,7 +166,7 @@ function loadVotePointsForCurrentUser(currentStoryID) {
   * @desc Routine, welche die Punkte (Abschätzung) des jeweils übergeben Users via Ajax aus dem Backend läd (Vote muss dabei schon abgelaufen sein)
   * 
 */
-function loadVotePoints(userID) {
+function loadVotePoints(userID, index, callback) {
     // Ajax-Aufruf
     $.ajax({
         type: 'GET',
@@ -132,16 +176,18 @@ function loadVotePoints(userID) {
             storyid: currentUserStoryID
         },
         success: function (data) {
-            setTmpCurrentUserStoryPoints(data);
-            tmpCurrentUserStoryPoints = data;
-            console.log('tmpCurrentUserStoryPoints in Ajax:' + tmpCurrentUserStoryPoints);
+            if (callback !== null){
+                callback(data, index);
+            }
+            //tmpCurrentUserStoryPoints = data;
+            //console.log('tmpCurrentUserStoryPoints in Ajax:' + tmpCurrentUserStoryPoints);
             return data;
         }
     })
 
         // Wenn Vorgang erfolgreich ...
         .done(function (data) {
-            console.log("loadVotePoints: Punkte-> " + data);
+            //console.log("loadVotePoints: Punkte-> " + data);
         })
         // Wenn Vorgang nicht erfolgreich
         .fail(function () {
@@ -160,36 +206,39 @@ function loadVotePoints(userID) {
 
 function setTmpCurrentUserStoryPoints(tmpData) {
     tmpCurrentUserStoryPoints = tmpData;
-    console.log('tmpData:' + tmpData);
+    //console.log('tmpData:' + tmpData);
 }
 
-$(document).ready(function () {
-    console.log(currentVote);
-    prepareAllCurrentMembers();
 
-})
-
-
+/**
+  * @desc Läd die Informationen, wie viele Teilnehmer bereits für eine User-Story abgestimmt haben und welche Teilnehmer es ingesamt gibt.
+  *       Die gesammelten Informationen werden dann an Funktionen weitergegeben, die diese an der Oberfläche ausgeben.
+*/
 function prepareAllCurrentMembers() {
     var userLength = currentVote.users.length;
-    var tmpNumberofMembersCurrentUserStory = 0;
-    var tmpUserBoxDiv = '';
-    for (var i = 0; i < userLength; ++i) {
-        loadVotePoints(currentVote.users[i].id);  // Punkte laden und wenn vorhanden in tmpCurrentUserStoryPoints laden 
-        console.log('tmpCurrentUserStoryPoints:' + tmpCurrentUserStoryPoints);
-        if (tmpCurrentUserStoryPoints !== undefined || tmpCurrentUserStoryPoints === '') {
-            tmpNumberofMembersCurrentUserStory++;
-        }
-        if (currentVote.users[i].username !== undefined || currentVote.users[i].username === '') {
-            tmpUserBoxDiv = tmpUserBoxDiv + "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'><i class='fa fa-github-square' style='font-size:36px'></i>" +
-                currentVote.users[i].username + "<span class='badge badge-primary badge-pill'>nA</span></div></div></h3>";
-        }
+    $("#currentUserBox").text('');
+    for (var i = 0; i < userLength; i++) {
+        loadVotePoints(currentVote.users[i].id , i,  function(data, index) {
+            
+            if (currentVote.users[index].username !== undefined || currentVote.users[index].username !== '') {
+                if (data.trim() == ''){
+                    data = 'Na'
+                }
+                var newUserDiv =  "<h3><div class='card'><div class='list-group-item d-flex justify-content-between align-items-center'><i class='fa fa-github-square' style='font-size:36px'></i>" +
+                    currentVote.users[index].username + "<span class='badge badge-primary badge-pill'>"+data+"</span></div></div></h3>";
+            }
+            setMemberBox(newUserDiv);
+        
+
+          });  // Punkte laden und wenn vorhanden in tmpCurrentUserStoryPoints laden 
+        //console.log('Test: '+loadVotePoints(currentVote.users[i].id));
+        
     }
-    setLabelNumberMember(tmpNumberofMembersCurrentUserStory);
-    setMemberBox(tmpUserBoxDiv);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
-
+/**
+  * @desc Setz (Bootsrap-Farbe-Klasse) auf der Oberfläche den übergeben Button und löscht vorherige Färbungen aller Abschätzungs-Buttons
+*/
 function setColorVoteButton(buttonName) {
     $("#buttonAbschaetzung button").each(function () {
         $(this).removeClass("btn btn-info").addClass("btn btn-primary");
@@ -205,7 +254,7 @@ function deleteColorAllVoteButtons() {
 }
 
 /**
-  * @desc Gibt anhand eines übergebenen Wertes (Punkte Abschätzung) einen Button zurück
+  * @desc Gibt anhand eines übergebenen Wertes (Punkte Abschätzung) einen Button-ID zurück
 */
 function setButtonColorFromPoints(storyValue) {
     var values = [0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, -1];
@@ -214,7 +263,7 @@ function setButtonColorFromPoints(storyValue) {
     //console.log('Eingabe zuordnung: '+storyValue);
     for (var i = 0; i < values.length; ++i) {
         if (values[i] == storyValue) {
-            console.log("Button gesetzt: " + buttonNames[i])
+            //console.log("Button gesetzt: " + buttonNames[i])
             return buttonNames[i];
         }
     }
@@ -224,11 +273,14 @@ function setButtonColorFromPoints(storyValue) {
   * @desc Gibt die übergeben Story-Point für eine User-Story auf der Oberfläche aus 
 */
 function setLabelStoryPoints(storyValue) {
-    if (storyValue == '-1') {
+    if (storyValue == -1) {
         $("#eigeneSchaetzung").text('nicht geschätzt, da du nicht sicher bist!');
-    } else if (storyValue == '1') {
+    } else if (storyValue == 1) {
         $("#eigeneSchaetzung").text('auf ' + storyValue + ' Story Point geschätzt!');
-    } else {
+    } else if (storyValue == null){
+        $("#eigeneSchaetzung").text(' noch nicht geschätzt');
+    }
+    else {
         $("#eigeneSchaetzung").text('auf ' + storyValue + ' Story Points geschätzt!');
     }
 }
@@ -237,7 +289,12 @@ function setLabelStoryPoints(storyValue) {
   * @desc Gibt die übergeben Anzahl der Teilnehmer auf der Oberfläche aus 
 */
 function setLabelNumberMember(numberOfMember) {
-    $("#anzahlTeilnehmerMitAbschaetzung").append(numberOfMember);
+    if (numberOfMember.trim()!== ''){
+        $("#anzahlTeilnehmerMitAbschaetzung").text(numberOfMember);
+    } else {
+        $("#anzahlTeilnehmerMitAbschaetzung").text('unknown');
+    }
+    
 }
 
 /**
@@ -264,7 +321,7 @@ function checkUserStoryID(aktuellerUserStoryCount) {
 }
 
 /**
-  * @desc Übergebene Werte, solange sie einen Inhalt enthalten, auf der Oberfläche ausgeben
+  * @desc Übergebene Werte für User-Story, solange sie einen Inhalt enthalten, auf der Oberfläche ausgeben
 */
 function setUserStory(title, description, storyNr) {
     if ((title !== '') || (description !== '') || (storyNr !== '')) {
@@ -275,8 +332,10 @@ function setUserStory(title, description, storyNr) {
         console.log("Keine Daten für User-Story-Anzeige übergeben!");
     }
 }
-
-// Anzahl der Gesamtstorys aulesen aus currentVote-Objekt und an der Oberfläche anzeigen
+ 
+/**
+  * @desc Anzahl der Gesamtstorys aulesen aus currentVote-Objekt und an der Oberfläche anzeigen
+*/
 $(document).ready(function () {
     $("#anzahlStorys").text(currentVote.user_storys.length);
 })

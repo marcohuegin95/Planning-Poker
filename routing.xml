@@ -68,7 +68,7 @@
         <controller>PokerController</controller>
         <action>loadPoints</action>
         <filter>LoginFilter</filter>
-    </route>
+    </route>userVotingCount
 
     <route>
         <url>/loadpointsforcurrentuser</url>
@@ -76,5 +76,13 @@
         <action>loadPointsForCurrentUser</action>
         <filter>LoginFilter</filter>
     </route>
+
+    <route>
+        <url>/loadvotecount</url>
+        <controller>PokerController</controller>
+        <action>userVotingCount</action>
+        <filter>LoginFilter</filter>
+    </route>
+
 
 </routes>
