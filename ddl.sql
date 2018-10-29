@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.8.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Erstellungszeit: 28. Okt 2018 um 13:20
--- Server-Version: 10.1.34-MariaDB
--- PHP-Version: 7.2.7
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +24,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `rel_user_user_story` (
   `fk_user` int(11) NOT NULL,
   `fk_user_story` int(11) NOT NULL,
-  `points` int(11) DEFAULT NULL
+  `points` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
