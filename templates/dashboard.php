@@ -32,7 +32,6 @@
                         <?php echo $_SESSION["email"] ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="Logout">Log out</a>
 
                     </div>
